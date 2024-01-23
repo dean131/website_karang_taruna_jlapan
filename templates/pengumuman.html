@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi dan Pengumuman</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/pengumuman.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    {% include 'components/navbar.html' %}
+
+
+    <!--Detail Pengumuman-->
+    <div class="detail-pengumuman">
+        <div class="container">
+            <div class="row">
+
+                <!--Bagian kiri-->
+                <div class="col-lg-8">
+                    <div class="bagian-kiri">
+                        <div class="search-pengumuman">
+                            <div class="container">
+                                <form action="{% url 'pengumuman' %}" method="get">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="search-pengumuman-dari">
+                                                <h1>Dari</h1>
+                                                <input type="date" class="form-control" name="dari" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="search-pengumuman-sampai">
+                                                <h1>Sampai</h1>
+                                                <input type="date" class="form-control" name="sampai" required>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-lg-3">
+                                        <div class="search-pengumuman-jeniskegiatan">
+                                            <h1>Jenis Kegiatan</h1>
+                                            <div class="dropdown">
+                                                <button class="btn btn-outline-dark dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Semua Jenis Kegiatan
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Jenis kegiatan a</a></li>
+                                                    <li><a class="dropdown-item" href="#">Jenis kegiatan b</a></li>
+                                                    <li><a class="dropdown-item" href="#">Jenis kegiatan c</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                        <div class="col-lg-3">
+                                            <button type="submit" class="btn btn-search ">Lihat</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-2 g-4 pt-5">
+                            {% for pengumuman in pengumumans %}
+                            <a href="{% url 'detail_pengumuman' pengumuman.id %}"
+                                class="link-underline link-underline-opacity-0">
+                                <div class="col py-2">
+                                    <div class="card shadow rounded">
+                                        <img src="{{ pengumuman.foto.url }}" alt="Bootstrap" class="img-fluid">
+                                        <div class="tgl-berita-card">
+                                            <p>{{ pengumuman.tanggal }}</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text text-black">{{ pengumuman.judul }}</p>
+                                            <div class="selanjutnya-card">
+                                                <p class="text-secondary">Lihat
+                                                    Selengkapnya <i class="fa-solid fa-arrow-right-long"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <!--End Bagian Kiri-->
+
+                <!--Bagian Kanan-->
+                <div class="col-lg-4">
+                    <div class="bagian-kanan">
+                        <h3>Cari Pengumuman</h3>
+                        <form action="{% url 'pengumuman' %}" method="get">
+                            <div class="cari-pengumuman">
+                                <div class="input-group">
+                                    <input class="form-control input-search" name="cari" type="search"
+                                        placeholder="cari..." id="example-search-input">
+                                </div>
+                                <button type="submit" class="btn btn-dark">Cari</button>
+                            </div>
+                        </form>
+                        <h3 class="yang-akan-datang">Terbaru</h3>
+                        <div class="card-yang-akan-datang">
+                            {% for pengumuman in pengumuman_terbaru %}
+                            <a href="{% url 'detail_pengumuman' pengumuman.id %}"
+                                class="link-underline link-underline-opacity-0">
+                                <div class="card-coming-soon">
+                                    <div class="row g-0 d-flex align-items-center">
+                                        <div class="col-md-4">
+                                            <img src="{{ pengumuman.foto.url }}" class="img-fluid " alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    {{ pengumuman.judul }}
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <!--Bagian Kanan-->
+
+            </div>
+        </div>
+    </div>
+    <!--End  of Detail Pengumuman-->
+
+
+    <!--Contact-->
+    <div class="info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="lokasi-contact">
+                        <div class="lokasi">
+                            <h2>Lokasi</h2>
+                            <a>
+                                <i class="fa-solid fa-location-dot"></i>
+                                <p>{{ karangtaruna.alamat }}</p>
+                            </a>
+                        </div>
+                        <div class="contact">
+                            <h2>Kontak</h2>
+                            <div class="sosmed">
+                                <a>
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                    <p class="facebook">{{ karangtaruna.facebook }}</p>
+                                </a>
+                                <a>
+                                    <i class="fa-brands fa-instagram"></i>
+                                    <p>{{ karangtaruna.instagram }}</p>
+                                </a>
+                                <a>
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                    <p>{{ karangtaruna.telepon }}</p>
+                                </a>
+                                <a>
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <p>{{ karangtaruna.email }}</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="maps">
+                        <iframe id="map"
+                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3240.4920096771157!2d139.7729667114835!3d35.68950832940467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzXCsDQxJzIyLjIiTiAxMznCsDQ2JzMyLjAiRQ!5e0!3m2!1sid!2sid!4v1705994084241!5m2!1sid!2sid"
+                            class="img-fluid"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Contact-->
+
+    <!--Footer-->
+    <div class="footer">
+        <p>© 2023 Informatika C 21</p>
+    </div>
+    <!--End Footer-->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        let lok = '{{ karangtaruna.lokasi }}';
+        document.getElementById('map').src = lok;
+    </script>
+</body>
+
+</html>
