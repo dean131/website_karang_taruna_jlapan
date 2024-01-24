@@ -13,7 +13,7 @@ def home(request):
         'kependudukan': kependudukan,
         'pengumumans': pengumumans,
     }
-    return render(request, 'home.html', context)
+    return render(request, 'base/home.html', context)
 
 def profile(request):
     karangtaruna = KarangTaruna.objects.first()
@@ -47,7 +47,6 @@ def pengumuman(request):
         'karangtaruna': karangtaruna,
     }
     return render(request, 'pengumuman.html', context)
-
 
 def detail_pengumuman(request, pk):
     karangtaruna = KarangTaruna.objects.first()

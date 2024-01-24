@@ -1,61 +1,265 @@
+{% extends 'base/base.html' %}
 {% load static %}
-<!doctype html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
-</head>
+{% block title %}
+<title>Beranda</title>
+{% endblock %}
 
-<body>
+{% block css %}
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="{{ karangtaruna.logo.url }}" alt="Logo" width="30" height="24"
-                    class="logo-nav d-inline-block align-text-top">
-                <!-- Karang Taruna Jlapan -->
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">informasi & Pengumunan</a>
-                    </li>
-                </ul>
+<style>
+    .title-page {
+        color: #414141;
+        font-weight: bold;
+        font-size: 75px;
+    }
+
+    .blue {
+        background-color: #222B5A;
+        color: white;
+    }
+
+    h2 {
+        font-weight: bold;
+        font-size: 38px;
+    }
+
+    .h2-bg_white {
+        color: #414141;
+    }
+
+
+    #myCarousel {
+        margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-inner .carousel-item>div {
+            display: none;
+        }
+
+        .carousel-inner .carousel-item>div:first-child {
+            display: block;
+        }
+    }
+
+    .carousel-inner .carousel-item.active,
+    .carousel-inner .carousel-item-start,
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+        display: flex;
+    }
+
+    @media (min-width: 768px) {
+
+        .carousel-inner .carousel-item-right.active,
+        .carousel-inner .carousel-item-next,
+        .carousel-item-next:not(.carousel-item-start) {
+            transform: translateX(25%) !important;
+        }
+
+        .carousel-inner .carousel-item-left.active,
+        .carousel-item-prev:not(.carousel-item-end),
+        .active.carousel-item-start,
+        .carousel-item-prev:not(.carousel-item-end) {
+            transform: translateX(-25%) !important;
+        }
+
+        .carousel-item-next.carousel-item-start,
+        .active.carousel-item-end {
+            transform: translateX(0) !important;
+        }
+
+        .carousel-inner .carousel-item-prev,
+        .carousel-item-prev:not(.carousel-item-end) {
+            transform: translateX(-25%) !important;
+        }
+    }
+
+    .carousel-control-prev {
+        width: 6vh;
+        height: 6vh;
+        background-color: #EB4A2D;
+        border-radius: 50%;
+        top: 50%;
+        transform: translate(-50%);
+        opacity: 1;
+    }
+
+    .carousel-control-next {
+        width: 6vh;
+        height: 6vh;
+        background-color: #EB4A2D;
+        border-radius: 50%;
+        top: 50%;
+        transform: translate(-50%);
+        opacity: 1;
+    }
+
+    .card-text-carousell {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<!-- Jumbotron -->
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <div class="my-5">
+                <h1 class="title-page">{{ karangtaruna.nama }}</h1>
+            </div>
+            <div>
+                <p>{{ karangtaruna.deskripsi_halaman_utama }}</p>
             </div>
         </div>
-    </nav>
+        <div class="col-md vh-75 d-flex justify-content-center mx-3">
+            <img src="{{ karangtaruna.logo.url }}" class="w-100 align-self-center">
+        </div>
+    </div>
+</div>
+<!-- End Jumbotron -->
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col col-md-6">
-                <h1>Judul Karang Taruna Jlapan</h1>
+<!-- Pengumuman & Agenda -->
+<div class="container-fluid blue py-5 my-5">
+    <h2 class="text-center">Pengumuman & Agenda</h2>
+
+    <!-- Carousell -->
+
+    <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
+        <div class="carousel-inner w-100">
+            {% for pengumuman in pengumumans %}
+            {% if forloop.first %}
+            <div class="carousel-item active">
+                <div class="card col-md-3 me-3">
+                    <img src="{{ pengumuman.foto.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pengumuman.judul }}</h5>
+                        <p class="card-text card-text-carousell">{{ pengumuman.deskripsi }}</p>
+                        <a href="{% url 'detail_pengumuman' pengumuman.id %}"
+                            class="btn btn-outline-dark">Selengkapnya</a>
+                    </div>
+                </div>
             </div>
-            <div class="col col-md-6">
-                <img src="{{ karangtaruna.logo.url }} " width="100%">
+            {% else %}
+            <div class="carousel-item">
+                <div class="card col-md-3 me-3">
+                    <img src="{{ pengumuman.foto.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pengumuman.judul }}</h5>
+                        <p class="card-text card-text-carousell">{{ pengumuman.deskripsi }}</p>
+                        <a href="{% url 'detail_pengumuman' pengumuman.id %}"
+                            class="btn btn-outline-dark">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- End Carousell -->
+
+    <div class="mt-5 text-center">
+        <a href="{% url 'pengumuman' %}" class="btn btn-outline-light">Agenda lainnya</a>
+    </div>
+
+</div>
+<!-- End Pengumuman & Agenda -->
+
+<!-- Kependudukan -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="h2-bg_white">Data Kependudukan Desa Jlapan</h2>
+            <p class="mt-5">{{ kependudukan.deskripsi }}</p>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+            <div class="rounded shadow align-self-center m-3 w-75">
+                <img src="{{ kependudukan.foto.url }}" class="w-100">
             </div>
         </div>
     </div>
+</div>
+<!-- End Kependudukan -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-</body>
+<!-- Footer -->
+<div class="container-fluid  blue p-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <h2>Alamat</h2>
+                <div class="row mt-3">
+                    <i class="fa-solid fa-location-dot col-auto"></i>
+                    <p class="col-auto">{{ karangtaruna.alamat }}</p>
+                </div>
+            </div>
+            <h2>Sosial Media</h2>
+            <div class="row mt-3">
+                <div class="row">
+                    <i class="fa-brands fa-facebook-f col-auto"></i>
+                    <p class="facebook col-auto">{{ karangtaruna.facebook }}</p>
+                </div>
+                <div class="row">
+                    <i class="fa-brands fa-instagram col-auto"></i>
+                    <p class="col-auto">{{ karangtaruna.instagram }}</p>
+                </div>
+                <div class="row mb-2">
+                    <i class="fa-brands fa-whatsapp col-auto"></i>
+                    <a class="col-auto link-underline link-underline-opacity-0 link-light"
+                        href="https://wa.me/{{ karangtaruna.telepon }}">{{ karangtaruna.telepon }}</a>
+                </div>
+                <div class="row">
+                    <i class="fa-regular fa-envelope col-auto"></i>
+                    <p class="col-auto">{{ karangtaruna.email }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center mt-3">
+            <iframe id="map"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3954.1840711307627!2d110.29550644587734!3d-7.663349656160306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMzknNDguMSJTIDExMMKwMTgnMDEuMyJF!5e0!3m2!1sid!2sid!4v1706064299291!5m2!1sid!2sid"
+                class="w-100 h-100 align-self-center" style="min-height: 300px;"></iframe>
+        </div>
+    </div>
+</div>
 
-</html>
+<div class="container-fluid p-4 text-center text-light bg-black">
+    <p>© 2024 Informatika C 21</p>
+</div>
+<!-- End Footer -->
+{% endblock %}
+
+{% block js %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
+<script>
+    $(document).ready(function () {
+        $('.carousel .carousel-item').each(function () {
+            var minPerSlide = 4;
+            var next = $(this).next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+
+            for (var i = 0; i < minPerSlide; i++) { next = next.next(); if (!next.length) { next = $(this).siblings(':first'); } next.children(':first-child').clone().appendTo($(this)); }
+        });
+
+
+        let lok = '{{ karangtaruna.lokasi }}';
+        document.getElementById('map').src = lok;
+    });
+</script>
+{% endblock %}
