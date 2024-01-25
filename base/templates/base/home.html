@@ -6,105 +6,9 @@
 {% endblock %}
 
 {% block css %}
-
-<style>
-    .title-page {
-        color: #414141;
-        font-weight: bold;
-        font-size: 75px;
-    }
-
-    .blue {
-        background-color: #222B5A;
-        color: white;
-    }
-
-    h2 {
-        font-weight: bold;
-        font-size: 38px;
-    }
-
-    .h2-bg_white {
-        color: #414141;
-    }
-
-
-    #myCarousel {
-        margin-top: 50px;
-    }
-
-    @media (max-width: 768px) {
-        .carousel-inner .carousel-item>div {
-            display: none;
-        }
-
-        .carousel-inner .carousel-item>div:first-child {
-            display: block;
-        }
-    }
-
-    .carousel-inner .carousel-item.active,
-    .carousel-inner .carousel-item-start,
-    .carousel-inner .carousel-item-next,
-    .carousel-inner .carousel-item-prev {
-        display: flex;
-    }
-
-    @media (min-width: 768px) {
-
-        .carousel-inner .carousel-item-right.active,
-        .carousel-inner .carousel-item-next,
-        .carousel-item-next:not(.carousel-item-start) {
-            transform: translateX(25%) !important;
-        }
-
-        .carousel-inner .carousel-item-left.active,
-        .carousel-item-prev:not(.carousel-item-end),
-        .active.carousel-item-start,
-        .carousel-item-prev:not(.carousel-item-end) {
-            transform: translateX(-25%) !important;
-        }
-
-        .carousel-item-next.carousel-item-start,
-        .active.carousel-item-end {
-            transform: translateX(0) !important;
-        }
-
-        .carousel-inner .carousel-item-prev,
-        .carousel-item-prev:not(.carousel-item-end) {
-            transform: translateX(-25%) !important;
-        }
-    }
-
-    .carousel-control-prev {
-        width: 6vh;
-        height: 6vh;
-        background-color: #EB4A2D;
-        border-radius: 50%;
-        top: 50%;
-        transform: translate(-50%);
-        opacity: 1;
-    }
-
-    .carousel-control-next {
-        width: 6vh;
-        height: 6vh;
-        background-color: #EB4A2D;
-        border-radius: 50%;
-        top: 50%;
-        transform: translate(-50%);
-        opacity: 1;
-    }
-
-    .card-text-carousell {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-</style>
-
+<link rel="stylesheet" href="{% static 'css/customhome.css' %}">
 {% endblock %}
+
 
 {% block content %}
 <!-- Jumbotron -->
@@ -130,7 +34,6 @@
     <h2 class="text-center">Pengumuman & Agenda</h2>
 
     <!-- Carousell -->
-
     <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
         <div class="carousel-inner w-100">
             {% for pengumuman in pengumumans %}
@@ -194,72 +97,4 @@
     </div>
 </div>
 <!-- End Kependudukan -->
-
-<!-- Footer -->
-<div class="container-fluid  blue p-5">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <h2>Alamat</h2>
-                <div class="row mt-3">
-                    <i class="fa-solid fa-location-dot col-auto"></i>
-                    <p class="col-auto">{{ karangtaruna.alamat }}</p>
-                </div>
-            </div>
-            <h2>Sosial Media</h2>
-            <div class="row mt-3">
-                <div class="row">
-                    <i class="fa-brands fa-facebook-f col-auto"></i>
-                    <p class="facebook col-auto">{{ karangtaruna.facebook }}</p>
-                </div>
-                <div class="row">
-                    <i class="fa-brands fa-instagram col-auto"></i>
-                    <p class="col-auto">{{ karangtaruna.instagram }}</p>
-                </div>
-                <div class="row mb-2">
-                    <i class="fa-brands fa-whatsapp col-auto"></i>
-                    <a class="col-auto link-underline link-underline-opacity-0 link-light"
-                        href="https://wa.me/{{ karangtaruna.telepon }}">{{ karangtaruna.telepon }}</a>
-                </div>
-                <div class="row">
-                    <i class="fa-regular fa-envelope col-auto"></i>
-                    <p class="col-auto">{{ karangtaruna.email }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 d-flex justify-content-center mt-3">
-            <iframe id="map"
-                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3954.1840711307627!2d110.29550644587734!3d-7.663349656160306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMzknNDguMSJTIDExMMKwMTgnMDEuMyJF!5e0!3m2!1sid!2sid!4v1706064299291!5m2!1sid!2sid"
-                class="w-100 h-100 align-self-center" style="min-height: 300px;"></iframe>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid p-4 text-center text-light bg-black">
-    <p>© 2024 Informatika C 21</p>
-</div>
-<!-- End Footer -->
-{% endblock %}
-
-{% block js %}
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-
-<script>
-    $(document).ready(function () {
-        $('.carousel .carousel-item').each(function () {
-            var minPerSlide = 4;
-            var next = $(this).next();
-            if (!next.length) {
-                next = $(this).siblings(':first');
-            }
-            next.children(':first-child').clone().appendTo($(this));
-
-            for (var i = 0; i < minPerSlide; i++) { next = next.next(); if (!next.length) { next = $(this).siblings(':first'); } next.children(':first-child').clone().appendTo($(this)); }
-        });
-
-
-        let lok = '{{ karangtaruna.lokasi }}';
-        document.getElementById('map').src = lok;
-    });
-</script>
 {% endblock %}

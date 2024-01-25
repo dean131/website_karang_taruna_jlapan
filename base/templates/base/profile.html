@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Profil</title>
+{% endblock %}
+
+{% block css %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="container-fluid blue py-5">
+    <h1 class="title-page text-light">Profil Karang Taruna</h1>
+</div>
+<!-- End Header -->
+
+<!-- Jumbotron -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 p-3">
+            <h2 class="mb-3">Selamat Datang di Website Karang Taruna Desa Jlapan</h2>
+            <p>{{ karangtaruna.deskripsi_halaman_profil }}</p>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center p-3">
+            <img src="{{ karangtaruna.foto_halaman_profil.url }}" class="w-100 align-self-center">
+        </div>
+    </div>
+</div>
+<!-- End Jumbotron -->
+
+<!-- Visi Misi -->
+<div class="container-fluid blue py-5">
+    <div class="row g-3">
+        <div class="col-lg-4">
+            <div class="card p-3">
+                <h2 class="text-center">Visi</h2>
+                <p>{{ karangtaruna.visi }}</p>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card p-3">
+                <h2 class="text-center">Misi</h2>
+                <p>{{ karangtaruna.misi }}</p>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card p-3">
+                <h2 class="text-center">Motto</h2>
+                <p>{{ karangtaruna.motto }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Visi Misi  -->
+{% endblock %}
+
+{% block js %}
+{% endblock %}

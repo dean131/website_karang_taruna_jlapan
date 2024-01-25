@@ -24,7 +24,7 @@ def profile(request):
         'divisis': divisis,
         'karangtaruna': karangtaruna,
     }
-    return render(request, 'profile.html', context)
+    return render(request, 'base/profile.html', context)
 
 def pengumuman(request):
     cari = request.GET.get('cari')
