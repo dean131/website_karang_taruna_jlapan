@@ -10,16 +10,12 @@ body {
 .title-page {
     color: #414141;
     font-weight: bold;
-    font-size: 75px;
+    font-size: 10px;
 }
 
 .blue {
     background-color: #222B5A;
     color: white;
-}
-
-.orange {
-    color: #eb4a2d;
 }
 
 h2 {
