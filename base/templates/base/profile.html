@@ -6,9 +6,6 @@
 {% endblock %}
 
 {% block css %}
-<style>
-
-</style>
 {% endblock %}
 
 {% block content %}
@@ -22,7 +19,7 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-6 p-3">
-            <h2 class="mb-3">Selamat Datang di Website Karang Taruna Desa Jlapan</h2>
+            <h2 class="mb-3 h2bgwhite">Selamat Datang di Website Karang Taruna Desa Jlapan</h2>
             <p>{{ karangtaruna.deskripsi_halaman_profil }}</p>
         </div>
         <div class="col-md-6 d-flex justify-content-center p-3">
@@ -37,7 +34,7 @@
     <div class="row g-3">
         <div class="col-lg-4">
             <div class="card p-3">
-                <h2 class="text-center">Visi</h2>
+                <h2 class="text-orange text-center">Visi</h2>
                 <p>{{ karangtaruna.visi }}</p>
             </div>
         </div>
@@ -58,5 +55,12 @@
 <!-- End Visi Misi  -->
 {% endblock %}
 
+
 {% block js %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var navLinkHome = document.getElementById("navLinkProfile");
+        navLinkHome.classList.add("active");
+    });
+</script>
 {% endblock %}

@@ -18,13 +18,19 @@ body {
     color: white;
 }
 
+.orange {
+    color: #eb4a2d;
+}
+
 h2 {
     font-weight: bold;
     font-size: 38px;
 }
 
-.h2-bg_white {
+.h2bgwhite {
     color: #414141;
+    font-weight: bold;
+    font-size: 88px;
 }
 
 
