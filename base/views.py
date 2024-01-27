@@ -7,7 +7,7 @@ from .models import KarangTaruna, Kependudukan, Pengumuman, Divisi, Pimpinan
 def home(request):
     karangtaruna = KarangTaruna.objects.first()
     kependudukan = Kependudukan.objects.first()
-    pengumumans = Pengumuman.objects.all().order_by('-tanggal')[:5]
+    pengumumans = Pengumuman.objects.all().order_by('-tanggal')[:10]
     context = {
         'karangtaruna': karangtaruna,
         'kependudukan': kependudukan,
@@ -46,7 +46,7 @@ def pengumuman(request):
         'pengumumans': pengumumans,
         'karangtaruna': karangtaruna,
     }
-    return render(request, 'pengumuman.html', context)
+    return render(request, 'base/pengumuman.html', context)
 
 def detail_pengumuman(request, pk):
     karangtaruna = KarangTaruna.objects.first()

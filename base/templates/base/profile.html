@@ -6,11 +6,21 @@
 {% endblock %}
 
 {% block css %}
+<style>
+    .title-profile {
+        color: #414141;
+    }
+
+    .text-visi-misi {
+        color: #1e1e1e;
+        font: 600 18px/30px Poppins, sans-serif;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <!-- Header -->
-<div class="container-fluid blue py-5">
+<div class="container-fluid bg-blue-fg-white py-5">
     <h1 class="title-page text-light">Profil Karang Taruna</h1>
 </div>
 <!-- End Header -->
@@ -19,7 +29,7 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-6 p-3">
-            <h2 class="mb-3 h2bgwhite">Selamat Datang di Website Karang Taruna Desa Jlapan</h2>
+            <h2 class="mb-3 h2-bg-white title-profile">Selamat Datang di Website Karang Taruna Desa Jlapan</h2>
             <p>{{ karangtaruna.deskripsi_halaman_profil }}</p>
         </div>
         <div class="col-md-6 d-flex justify-content-center p-3">
@@ -30,29 +40,143 @@
 <!-- End Jumbotron -->
 
 <!-- Visi Misi -->
-<div class="container-fluid blue py-5">
+<div class="container-fluid bg-blue-fg-white py-5">
     <div class="row g-3">
         <div class="col-lg-4">
             <div class="card p-3">
-                <h2 class="text-orange text-center">Visi</h2>
-                <p>{{ karangtaruna.visi }}</p>
+                <h2 class="red text-center my-3">Visi</h2>
+                <p class="text-visi-misi">{{ karangtaruna.visi }}</p>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="card p-3">
-                <h2 class="text-center">Misi</h2>
-                <p>{{ karangtaruna.misi }}</p>
+                <h2 class="red text-center my-3">Misi</h2>
+                <p class="text-visi-misi">{{ karangtaruna.misi }}</p>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="card p-3">
-                <h2 class="text-center">Motto</h2>
-                <p>{{ karangtaruna.motto }}</p>
+                <h2 class="red text-center my-3">Motto</h2>
+                <p class="text-visi-misi">{{ karangtaruna.motto }}</p>
             </div>
         </div>
     </div>
 </div>
 <!-- End Visi Misi  -->
+
+<!-- Regulasi & Program Kerja -->
+<div class="container-fluid">
+    <div class="row g-3 py-5">
+        <div class="col-lg-6">
+            <div class="card p-3 shadow">
+                <h2 class="text-center my-3">Regulasi</h2>
+                <p class="text-visi-misi">{{ karangtaruna.regulasi }}</p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card p-3 shadow">
+                <h2 class="text-center my-3">Program Kerja</h2>
+                <p class="text-visi-misi">{{ karangtaruna.program_kerja }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Regulasi & Program Kerja -->
+
+<!-- Pimpinan Karang Taruna -->
+<div class="container-fluid bg-blue-fg-white py-5">
+    <h2 class="text-center mb-5">Pimpinan Karang Taruna</h2>
+
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            {% for pimpinan in pimpinans %}
+            <div class="card col-sm-5 col-md-3 m-3">
+                <img src="{{ pimpinan.foto.url }}" class="img-fluid" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pimpinan.nama }}</h5>
+                    <p class="card-text card-text-carousell">{{ pimpinan.jabatan }}</p>
+                    <a href="https://wa.me/{{ pimpinan.telepon }}" class="btn btn-outline-dark">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        {{ pimpinan.telepon }}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Carousell -->
+    <!-- <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
+        <div class="carousel-inner w-100">
+            {% for pimpinan in pimpinans %}
+            {% if forloop.first %}
+            <div class="carousel-item active">
+                {% else %}
+                <div class="carousel-item">
+                    {% endif %}
+                    <div class="card col-md-4 me-3">
+                        <img src="{{ pimpinan.foto.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pimpinan.nama }}</h5>
+                            <p class="card-text card-text-carousell">{{ pimpinan.jabatan }}</p>
+                            <a href="https://wa.me/{{ pimpinan.telepon }}" class="btn btn-outline-dark">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                {{ pimpinan.telepon }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div> -->
+    <!-- End Carousell -->
+</div>
+<!-- End Pimpinan Karang Taruna -->
+
+<!-- Divisi Karang Taruna -->
+<div class="container-fluid py-3">
+    <h2 class="text-center my-5">Divisi Karang Taruna</h2>
+    {% for divisi in divisis %}
+    <div class="card mb-5 shadow">
+        <div class="mb-3 p-3">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card p-3 shadow mb-3">
+                        <h2 class="red">{{ divisi.nama }}</h2>
+                        <p class="text-visi-misi">{{ divisi.deskripsi }}</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        {% for anggota in divisi.anggota_set.all %}
+                        <div class="card col-sm-5 col-md-4 col-lg-3 shadow mx-2 mb-2">
+                            <img src="{{ anggota.foto.url }}" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ anggota.nama }}</h5>
+                                <p class="card-text card-text-carousell">{{ anggota.jabatan }}</p>
+                                <a href="https://wa.me/{{ anggota.telepon }}" class="btn btn-outline-dark">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                    {{ anggota.telepon }}
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- End Divisi -->
 {% endblock %}
 
 

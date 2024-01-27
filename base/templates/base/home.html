@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/customhome.css' %}">
 {% endblock %}
 
 
@@ -30,15 +29,14 @@
 <!-- End Jumbotron -->
 
 <!-- Pengumuman & Agenda -->
-<div class="container-fluid blue py-5 my-5">
+<div class="container-fluid bg-blue-fg-white py-5 my-5">
     <h2 class="text-center">Pengumuman & Agenda</h2>
 
     <!-- Carousell -->
     <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
         <div class="carousel-inner w-100">
             {% for pengumuman in pengumumans %}
-            {% if forloop.first %}
-            <div class="carousel-item active">
+            <div {% if forloop.first %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
                 <div class="card col-md-3 me-3">
                     <img src="{{ pengumuman.foto.url }}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -49,19 +47,6 @@
                     </div>
                 </div>
             </div>
-            {% else %}
-            <div class="carousel-item">
-                <div class="card col-md-3 me-3">
-                    <img src="{{ pengumuman.foto.url }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ pengumuman.judul }}</h5>
-                        <p class="card-text card-text-carousell">{{ pengumuman.deskripsi }}</p>
-                        <a href="{% url 'detail_pengumuman' pengumuman.id %}"
-                            class="btn btn-outline-dark">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
             {% endfor %}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
