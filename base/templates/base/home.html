@@ -38,7 +38,8 @@
             {% for pengumuman in pengumumans %}
             <div {% if forloop.first %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
                 <div class="card col-md-3 me-3">
-                    <img src="{{ pengumuman.foto.url }}" class="card-img-top" alt="...">
+                    <img src="{{ pengumuman.foto.url }}" class="card-img-top" alt="..."
+                        style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">{{ pengumuman.judul }}</h5>
                         <p class="card-text card-text-carousell">{{ pengumuman.deskripsi }}</p>
@@ -75,8 +76,8 @@
             <p class="mt-5">{{ kependudukan.deskripsi }}</p>
         </div>
         <div class="col-md-6 d-flex justify-content-center">
-            <div class="rounded shadow align-self-center m-3 w-75">
-                <img src="{{ kependudukan.foto.url }}" class="w-100">
+            <div class="align-self-center m-3 w-75">
+                <img src="{{ kependudukan.foto.url }}" class="w-100 shadow rounded">
             </div>
         </div>
     </div>

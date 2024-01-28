@@ -31,7 +31,7 @@ def pengumuman(request):
     dari = request.GET.get('dari')
     sampai = request.GET.get('sampai')
     karangtaruna = KarangTaruna.objects.first()
-    pengumumans = Pengumuman.objects.all().order_by('-tanggal')[:20]
+    pengumumans = Pengumuman.objects.all().order_by('-tanggal')[:10]
     pengumuman_terbaru = pengumumans[:5]
     if dari and sampai:
         pengumumans = Pengumuman.objects.filter(tanggal__range=[dari, sampai]).order_by('-tanggal')
@@ -57,4 +57,4 @@ def detail_pengumuman(request, pk):
         'karangtaruna': karangtaruna,
         'pengumuman': pengumuman,
     }
-    return render(request, 'detailPengumuman.html', context)
+    return render(request, 'base/detail_pengumuman.html', context)

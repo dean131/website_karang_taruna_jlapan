@@ -88,17 +88,20 @@
     <h2 class="text-center mb-5">Pimpinan Karang Taruna</h2>
 
     <div class="container">
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center g-3">
             {% for pimpinan in pimpinans %}
-            <div class="card col-sm-5 col-md-3 m-3">
-                <img src="{{ pimpinan.foto.url }}" class="img-fluid" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ pimpinan.nama }}</h5>
-                    <p class="card-text card-text-carousell">{{ pimpinan.jabatan }}</p>
-                    <a href="https://wa.me/{{ pimpinan.telepon }}" class="btn btn-outline-dark">
-                        <i class="fa-brands fa-whatsapp"></i>
-                        {{ pimpinan.telepon }}
-                    </a>
+            <div class="col-sm-5 col-md-4 col-lg-3">
+                <div class="card">
+                    <img src="{{ pimpinan.foto.url }}" class="card-img-top" style="object-fit: cover; height: 200px;"
+                        alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pimpinan.nama }}</h5>
+                        <p class="card-text card-text-carousell">{{ pimpinan.jabatan }}</p>
+                        <a href="https://wa.me/{{ pimpinan.telepon }}" class="btn btn-outline-dark">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            {{ pimpinan.telepon }}
+                        </a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -145,7 +148,7 @@
 <div class="container-fluid py-3">
     <h2 class="text-center my-5">Divisi Karang Taruna</h2>
     {% for divisi in divisis %}
-    <div class="card mb-5 shadow">
+    <div class="card mb-5">
         <div class="mb-3 p-3">
             <div class="row">
                 <div class="col-md-3">
@@ -157,15 +160,18 @@
                 <div class="col">
                     <div class="row">
                         {% for anggota in divisi.anggota_set.all %}
-                        <div class="card col-sm-5 col-md-4 col-lg-3 shadow mx-2 mb-2">
-                            <img src="{{ anggota.foto.url }}" class="img-fluid" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ anggota.nama }}</h5>
-                                <p class="card-text card-text-carousell">{{ anggota.jabatan }}</p>
-                                <a href="https://wa.me/{{ anggota.telepon }}" class="btn btn-outline-dark">
-                                    <i class="fa-brands fa-whatsapp"></i>
-                                    {{ anggota.telepon }}
-                                </a>
+                        <div class="col-sm-5 col-md-4 col-lg-3 mb-2">
+                            <div class="card shadow">
+                                <img src="{{ anggota.foto.url }}" class="card-img-top"
+                                    style="object-fit: cover; height: 200px;" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ anggota.nama }}</h5>
+                                    <p class="card-text card-text-carousell">{{ anggota.jabatan }}</p>
+                                    <a href="https://wa.me/{{ anggota.telepon }}" class="btn btn-outline-dark">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                        {{ anggota.telepon }}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         {% endfor %}
