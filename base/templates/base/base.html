@@ -226,9 +226,8 @@
                     </div>
                 </div>
                 <div class="col-md-6 d-flex justify-content-center mt-3">
-                    <iframe id="map"
-                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3954.1840711307627!2d110.29550644587734!3d-7.663349656160306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMzknNDguMSJTIDExMMKwMTgnMDEuMyJF!5e0!3m2!1sid!2sid!4v1706064299291!5m2!1sid!2sid"
-                        class="w-75 h-100 align-self-center rounded" style="min-height: 300px;"></iframe>
+                    <iframe src="{{ karangtaruna.lokasi }}" class="w-100 h-100 align-self-center rounded"
+                        style="min-height: 300px;"></iframe>
                 </div>
             </div>
         </div>
@@ -257,10 +256,6 @@
 
                 for (var i = 0; i < minPerSlide; i++) { next = next.next(); if (!next.length) { next = $(this).siblings(':first'); } next.children(':first-child').clone().appendTo($(this)); }
             });
-
-
-            let lok = '{{ karangtaruna.lokasi }}';
-            document.getElementById('map').src = lok;
         });
     </script>
 
