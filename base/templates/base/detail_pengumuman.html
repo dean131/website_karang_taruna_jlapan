@@ -2,14 +2,113 @@
 {% load static %}
 
 {% block title %}
-<title>Detail Pengumuman</title>
+<title>Informasi & Pengumuman</title>
 {% endblock %}
 
 {% block css %}
+<style>
+    .image-overlay {
+        color: white;
+        background-color: #eb4a2d;
+        font-size: 14px;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .card-image-overlay {
+        position: absolute;
+        padding: 2rem 0;
+    }
+
+    .card-tile-pengumuman {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1e1e1e;
+    }
+
+    .form-control {
+        border-color: black;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
+<div class="container py-5">
+    <div class="row g-5">
+
+        <!-- Content -->
+        <div class="col col-xl-9">
+            <div class="card">
+                <img class="img-fluid" style="object-fit: cover; max-height: 400px;" src="{{ pengumuman.foto.url }}"
+                    alt="gambar">
+                <div class="card-body">
+                    <h4>{{ pengumuman.judul }}</h4>
+                    <p>{{ pengumuman.deskripsi }}</p>
+
+                    {% if pengumuman.lokasi %}
+                    <h4 class="mt-5">Map</h4>
+                    <div class="d-flex justify-content-center mt-3">
+                        <iframe src="{{ pengumuman.lokasi }}" class="w-100 align-self-center rounded"
+                            style="min-height: 300px;"></iframe>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- End Content -->
+
+        <!-- Side bar -->
+        <div class="col-auto col-xl-3">
+            <!-- Search -->
+            <h5>Cari Pengumuman</h5>
+            <form action="{% url 'pengumuman' %}" method="get">
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control" type="search" name="cari" placeholder="Cari">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-dark" type="submit">Cari</button>
+                    </div>
+                </div>
+            </form>
+            <!-- End Search -->
+
+            <!-- Terbaru -->
+            <h5 class="mt-5">Terbaru</h5>
+            <div class="row g-3">
+                {% for pengumuman in pengumuman_terbaru %}
+                <div class="col-12">
+                    <div class="card shadow">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="{{ pengumuman.foto.url }}" class="w-100 h-100 rounded-start"
+                                    style="object-fit: cover; max-height: 100px;" alt="...">
+                            </div>
+                            <div class="col-8 py-2">
+                                <p class="card-side">{{ pengumuman.judul }}</p>
+                                <p>
+                                    <small class="text-muted">
+                                        {{ pengumuman.tanggal|date:"d M Y"}}
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- End Terbaru -->
+        </div>
+        <!-- End Side bar -->
+
+    </div>
+</div>
 {% endblock %}
 
 {% block js %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var navLinkHome = document.getElementById("navLinkPengumuman");
+        navLinkHome.classList.add("active");
+    });
+</script>
 {% endblock %}

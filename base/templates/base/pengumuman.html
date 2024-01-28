@@ -36,7 +36,27 @@
     <div class="row g-5">
 
         <!-- Content -->
-        <div class="col-auto col-lg-9">
+        <div class="col-auto col-xl-9">
+
+            <!-- Search -->
+            <div class="mb-5">
+                <h4>Cari Berdasarkan Waktu</h4>
+                <form action="{% url 'pengumuman' %}" method="get">
+                    <div class="row">
+                        <div class="col-auto">
+                            <input class="form-control" type="date" name="dari">
+                        </div>
+                        <div class="col-auto">
+                            <input class="form-control" type="date" name="sampai">
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-dark" type="submit">Cari</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- End Search -->
+
             <div class="row g-3">
                 {% for pengumuman in pengumumans %}
                 <div class="col-md-6 col-lg-4">
@@ -50,7 +70,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-tile-pengumuman">{{ pengumuman.judul }}</p>
-                            <a href="{% url 'detail_pengumuman' pengumuman.id %}" class="btn btn-outline-dark">
+                            <a href="{% url 'detail_pengumuman' pengumuman.id %}" class="btn btn-outline-dark btn-sm">
                                 Selengkapnya
                             </a>
                         </div>
@@ -62,23 +82,23 @@
         <!-- End Content -->
 
         <!-- Side bar -->
-        <div class="col-auto col-lg-3">
+        <div class="col-auto col-xl-3">
             <!-- Search -->
-            <h5>Cari Pengumuman</h5>
+            <h4>Cari Pengumuman</h4>
             <form action="{% url 'pengumuman' %}" method="get">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col">
                         <input class="form-control" type="search" name="cari" placeholder="Cari">
                     </div>
-                    <div class="col-1">
-                        <button class="btn btn-outline-dark" type="submit">Cari</button>
+                    <div class="col-auto">
+                        <button class="btn btn-dark" type="submit">Cari</button>
                     </div>
                 </div>
             </form>
             <!-- End Search -->
 
             <!-- Terbaru -->
-            <h5 class="mt-5">Terbaru</h5>
+            <h4 class="mt-5">Terbaru</h4>
             <div class="row g-3">
                 {% for pengumuman in pengumuman_terbaru %}
                 <div class="col-12">
@@ -89,7 +109,7 @@
                                     style="object-fit: cover; max-height: 100px;" alt="...">
                             </div>
                             <div class="col-8 py-2">
-                                <p>{{ pengumuman.judul }}</p>
+                                <p class="card-side">{{ pengumuman.judul }}</p>
                                 <p>
                                     <small class="text-muted">
                                         {{ pengumuman.tanggal|date:"d M Y"}}
