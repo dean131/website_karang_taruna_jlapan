@@ -115,53 +115,8 @@
   {% include 'myadmin/components/sidebar.html' %}
   <!-- End Sidebar-->
 
-  <main id="main" class="main">
-
-    <div class="pagetitle">
-      <h1>Halaman Beranda</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Halaman Beranda</li>
-        </ol>
-      </nav>
-    </div>
-    <!-- End Page Title -->
-
-    <section class="section dashboard">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Vertical Form</h5>
-
-          <!-- Vertical Form -->
-          <form class="row g-3">
-
-            <div class="col-12">
-              <label for="inputNanme4" class="form-label">Judul</label>
-              <input type="text" class="form-control" id="inputNanme4">
-            </div>
-
-            <div class="col-12">
-              <label for="inputPassword" class="form-label">Deskripsi</label>
-              <textarea class="form-control" style="height: 100px"></textarea>
-            </div>
-
-            <div class="col-12">
-              <label for="inputNumber" class="form-label">Gambar</label>
-              <input class="form-control" type="file" id="formFile">
-            </div>
-
-            <div class="col-2 d-grid">
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </form>
-          <!-- Vertical Form -->
-
-        </div>
-      </div>
-    </section>
-
-  </main>
+  <!-- ======= Main ======= -->
+  {% block content %}{% endblock %}
   <!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -187,6 +142,8 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js' %}"></script>
+
+  {% block js %}{% endblock %}
 
 </body>
 
