@@ -25,3 +25,6 @@ def beranda_jumbotron(request):
         'karangtaruna': karangtaruna
     }
     return render(request, 'myadmin/beranda_jumbotron.html', context)
+
+def beranda_kependudukan(request):
+    return render(request, 'myadmin/beranda_kependudukan.html')
