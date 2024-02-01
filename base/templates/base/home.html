@@ -77,11 +77,11 @@
             <h2>Data Kependudukan Desa Jlapan</h2>
             <p class="mt-5">{{ kependudukan.deskripsi }}</p>
         </div>
+        {% if kependudukan.foto %}
         <div class="col-md-6 d-flex justify-content-center">
-            <div class="align-self-center m-3 w-75">
-                <img src="{{ kependudukan.foto.url }}" class="w-100 shadow rounded">
-            </div>
+            <img src="{{ kependudukan.foto.url }}" class="w-75 align-self-center shadow rounded">
         </div>
+        {% endif %}
     </div>
 </div>
 <!-- End Kependudukan -->

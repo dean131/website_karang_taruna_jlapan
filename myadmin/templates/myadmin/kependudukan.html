@@ -4,11 +4,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Jumbotron</h1>
+        <h1>Kependudukan</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Jumbotron</a></li>
-                <li class="breadcrumb-item active">Jumbotron Beranda</li>
+                <li class="breadcrumb-item"><a href="#">Kependudukan</a></li>
+                <li class="breadcrumb-item active">Kependudukan</li>
             </ol>
         </nav>
     </div>
@@ -17,22 +17,16 @@
     <section class="section dashboard">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Jumbotron Beranda</h5>
+                <h5 class="card-title">Kependudukan</h5>
 
                 <!-- Vertical Form -->
                 <form class="row g-3" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
 
                     <div class="col-12">
-                        <label for="inputNanme4" class="form-label">Judul</label>
-                        <input type="text" class="form-control" id="inputNanme4" value="{{ jumbotron.judul }}"
-                            name="judul" required>
-                    </div>
-
-                    <div class="col-12">
                         <label for="inputPassword" class="form-label">Deskripsi</label>
                         <textarea class="form-control" style="height: 200px" name="deskripsi"
-                            required>{{ jumbotron.deskripsi }}</textarea>
+                            required>{{ kependudukan.deskripsi }}</textarea>
                     </div>
 
                     <div class="col-12">
@@ -54,8 +48,4 @@
 {% endblock %}
 
 {% block js %}
-<script>
-    var jumbotronBerandaNav = document.getElementById("jumbotronBerandaNav");
-    jumbotronBerandaNav.classList.add("active");
-</script>
 {% endblock %}
