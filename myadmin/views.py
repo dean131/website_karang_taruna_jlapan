@@ -85,17 +85,29 @@ def karangtaruna(request):
     if request.method == 'POST':
         karangtaruna = KarangTaruna.objects.first()
         nama = request.POST.get('nama')
-        deskripsi = request.POST.get('deskripsi')
         lokasi = request.POST.get('lokasi')
-        foto = request.FILES.get('foto')
+        logo = request.FILES.get('logo')
+        alamat = request.POST.get('alamat')
+        telepon = request.POST.get('telepon')
+        email = request.POST.get('email')
+        facebook = request.POST.get('facebook')
+        instagram = request.POST.get('instagram')
 
         if nama: karangtaruna.nama = nama
-        if deskripsi: karangtaruna.deskripsi = deskripsi
         if lokasi: karangtaruna.lokasi = lokasi
-        if foto: karangtaruna.foto = foto
+        if logo: karangtaruna.logo = logo
+        if alamat: karangtaruna.alamat = alamat
+        if telepon: karangtaruna.telepon = telepon
+        if email: karangtaruna.email = email
+        if facebook: karangtaruna.facebook = facebook
+        if instagram: karangtaruna.instagram = instagram
         karangtaruna.save()
 
     karangtaruna = KarangTaruna.objects.first()
+    if not karangtaruna:
+        karangtaruna = KarangTaruna.objects.create(
+            nama='Karang Taruna',
+        )
 
     context = {
         'karangtaruna': karangtaruna,

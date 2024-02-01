@@ -24,15 +24,45 @@
                     {% csrf_token %}
 
                     <div class="col-12">
-                        <label for="inputNanme4" class="form-label">nama</label>
-                        <input type="text" class="form-control" id="inputNanme4" value="{{ karangtaruna.nama }}"
+                        <label for="inputNama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="inputNama" value="{{ karangtaruna.nama }}"
                             name="nama" required>
                     </div>
 
                     <div class="col-12">
-                        <label for="inputPassword" class="form-label">Nama</label>
-                        <textarea class="form-control" style="height: 200px" name="nama"
-                            required>{{ karangtaruna.nama }}</textarea>
+                        <label for="inputAlamat" class="form-label">Alamat</label>
+                        <textarea class="form-control" id="inputAlamat" style="height: 200px" name="alamat"
+                            required>{{ karangtaruna.alamat }}</textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="inputLokasi" class="form-label">Lokasi</label>
+                        <textarea class="form-control" style="height: 200px" name="lokasi"
+                            required>{{ karangtaruna.lokasi }}</textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="inputTelepon" class="form-label">Telepon</label>
+                        <input type="number" class="form-control" id="inputTelepon" value="{{ karangtaruna.telepon }}"
+                            name="telepon" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="inputEmail" value="{{ karangtaruna.email }}"
+                            name="email" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="inputFacebook" class="form-label">Facebook</label>
+                        <input type="text" class="form-control" id="inputFacebook" value="{{ karangtaruna.facebook }}"
+                            name="facebook" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="inputInstagram" class="form-label">Instagram</label>
+                        <input type="text" class="form-control" id="inputInstagram" value="{{ karangtaruna.instagram }}"
+                            name="instagram" required>
                     </div>
 
                     <div class="col-12">
