@@ -3,19 +3,18 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Halaman Beranda</span><i
-                    class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link" data-bs-target="#jumbotrons-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Jumbotron</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+            <ul id="jumbotrons-nav" class="nav-content" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{% url 'beranda_jumbotron' %}" class="active">
-                        <i class="bi bi-circle"></i><span>Jumbotron</span>
+                    <a href="{% url 'jumbotron_beranda' %}" id="jumbotronBerandaNav">
+                        <i class="bi bi-circle"></i><span>Beranda</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'beranda_kependudukan' %}">
-                        <i class="bi bi-circle"></i><span>Accordion</span>
+                    <a href="{% url 'jumbotron_profile' %}" id="jumbotronProfileNav">
+                        <i class="bi bi-circle"></i><span>Profile</span>
                     </a>
                 </li>
             </ul>

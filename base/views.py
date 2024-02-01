@@ -1,14 +1,17 @@
 from django.shortcuts import render
 from django.db.models import Q
 
-from .models import KarangTaruna, Kependudukan, Pengumuman, Divisi, Pimpinan
+from .models import KarangTaruna, Kependudukan, Pengumuman, Divisi, Pimpinan, Jumbotron
 
 
 def home(request):
+    jumbotron = Jumbotron.objects.get(nama='jumbotron_beranda')
     karangtaruna = KarangTaruna.objects.first()
     kependudukan = Kependudukan.objects.first()
     pengumumans = Pengumuman.objects.all().order_by('-tanggal')[:10]
+
     context = {
+        'jumbotron': jumbotron,
         'karangtaruna': karangtaruna,
         'kependudukan': kependudukan,
         'pengumumans': pengumumans,
@@ -16,10 +19,13 @@ def home(request):
     return render(request, 'base/home.html', context)
 
 def profile(request):
+    jumbotron = Jumbotron.objects.get(nama='jumbotron_profile')
     karangtaruna = KarangTaruna.objects.first()
     divisis = Divisi.objects.all()
     pimpinans = Pimpinan.objects.all()
+
     context = {
+        'jumbotron': jumbotron,
         'pimpinans': pimpinans,
         'divisis': divisis,
         'karangtaruna': karangtaruna,

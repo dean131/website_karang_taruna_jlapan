@@ -15,13 +15,19 @@
         color: #1e1e1e;
         font: 600 18px/30px Poppins, sans-serif;
     }
+
+    .profile-title {
+        font-size: 58px;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <!-- Header -->
 <div class="container-fluid bg-blue-fg-white py-5">
-    <h1 class="title-page text-light">Profil Karang Taruna</h1>
+    <div class="container">
+        <h1 class="title-page text-light profile-title">Profil Karang Taruna</h1>
+    </div>
 </div>
 <!-- End Header -->
 
@@ -29,12 +35,14 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-6 p-3">
-            <h2 class="mb-3 h2-bg-white title-profile">Selamat Datang di Website Karang Taruna Desa Jlapan</h2>
-            <p>{{ karangtaruna.deskripsi_halaman_profil }}</p>
+            <h2 class="mb-3 h2-bg-white title-profile">{{ jumbotron.judul }}</h2>
+            <p>{{ jumbotron.deskripsi }}</p>
         </div>
+        {% if jumbotron.foto %}
         <div class="col-md-6 d-flex justify-content-center p-3">
-            <img src="{{ karangtaruna.foto_halaman_profil.url }}" class="w-100 align-self-center">
+            <img src="{{ jumbotron.foto.url }}" class="w-75 align-self-center">
         </div>
+        {% endif %}
     </div>
 </div>
 <!-- End Jumbotron -->

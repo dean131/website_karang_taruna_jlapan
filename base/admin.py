@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (
     User, KarangTaruna, Kependudukan, 
-    Pengumuman, Divisi, Anggota, Pimpinan)
+    Pengumuman, Divisi, Anggota, Pimpinan, Jumbotron)
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -33,6 +33,11 @@ class PimpinanAdmin(admin.ModelAdmin):
     list_display = ('nama', 'jabatan')
 
 
+class JumbotronAdmin(admin.ModelAdmin):
+    list_display = ('nama', 'judul',)
+
+
+admin.site.register(Jumbotron, JumbotronAdmin)
 admin.site.register(Pimpinan, PimpinanAdmin)
 admin.site.register(Anggota, AnggotaAdmin)
 admin.site.register(Divisi, DivisiAdmin)

@@ -15,15 +15,17 @@
     <div class="row">
         <div class="col-md">
             <div class="py-5">
-                <h1 class="title-page">{{ karangtaruna.nama }}</h1>
+                <h1 class="title-page">{{ jumbotron.judul }}</h1>
             </div>
             <div>
-                <p>{{ karangtaruna.deskripsi_halaman_utama }}</p>
+                <p>{{ jumbotron.deskripsi }}</p>
             </div>
         </div>
+        {% if jumbotron.foto %}
         <div class="col-md d-flex justify-content-center p-5">
-            <img src="{{ karangtaruna.foto_halaman_utama.url }}" class="w-75 align-self-center">
+            <img src="{{ jumbotron.foto.url }}" class="w-75 align-self-center">
         </div>
+        {% endif %}
     </div>
 </div>
 <!-- End Jumbotron -->

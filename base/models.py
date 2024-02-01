@@ -78,8 +78,6 @@ class KarangTaruna(models.Model):
     # Halaman utama
     nama = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='karangtaruna', blank=True)
-    foto_halaman_utama = models.ImageField(upload_to='karangtaruna', blank=True)
-    deskripsi_halaman_utama = models.TextField(null=True, blank=True)
     # Address
     lokasi = models.TextField(null=True)
     alamat = models.CharField(max_length=100)
@@ -89,14 +87,11 @@ class KarangTaruna(models.Model):
     facebook = models.CharField(max_length=100)
     instagram = models.CharField(max_length=100)
     # Profile Page
-    foto_halaman_profil = models.ImageField(upload_to='karangtaruna', blank=True)
     visi = models.TextField()
     misi = models.TextField()
     regulasi = models.TextField()
     program_kerja = models.TextField()
     motto = models.TextField()
-    deskripsi_halaman_profil = models.TextField()
-
 
 
 class Pengumuman(models.Model):
@@ -136,6 +131,13 @@ class Pimpinan(models.Model):
     foto = models.ImageField(upload_to='pimpinan')
     telepon = models.CharField(max_length=20)
     jabatan = models.CharField(max_length=100)
+    deskripsi = models.TextField()
+
+
+class Jumbotron(models.Model):
+    nama = models.CharField(max_length=30, unique=True)
+    judul = models.CharField(max_length=100)
+    foto = models.ImageField(upload_to='jumbotron', null=True, blank=True)
     deskripsi = models.TextField()
 
 
