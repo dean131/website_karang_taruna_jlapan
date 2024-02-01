@@ -19,10 +19,10 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .logo-nav {
+        /* .logo-nav {
             height: 60px;
             width: 60px;
-        }
+        } */
 
         .title-page {
             color: #414141;
@@ -159,10 +159,12 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="{{ karangtaruna.logo.url }}" alt="Logo" width="30" height="24"
-                    class="logo-nav d-inline-block align-text-top">
-                <!-- Karang Taruna Jlapan -->
+            <a class="navbar-brand d-flex align-items-center" style="font-weight: 500;" href="/">
+                {% if karangtaruna.logo %}
+                <img src="{{ karangtaruna.logo.url }}" alt="Logo" width="60" height="60"
+                    class="d-inline-block align-text-top me-3">
+                {% endif %}
+                {{ karangtaruna.nama }}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

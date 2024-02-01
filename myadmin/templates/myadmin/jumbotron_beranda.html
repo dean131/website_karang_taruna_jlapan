@@ -36,8 +36,17 @@
                     </div>
 
                     <div class="col-12">
-                        <label for="formFile" class="form-label">Gambar</label>
-                        <input class="form-control" type="file" id="formFile" name="foto">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <label for="formFile" class="form-label">Gambar</label>
+                                <input class="form-control" type="file" id="formFile" name="foto">
+                            </div>
+                            {% if jumbotron.foto %}
+                            <div class="col-lg-4 d-flex p-3 justify-content-center">
+                                <img src="{{ jumbotron.foto.url }}" class="w-75 align-self-center shadow rounded">
+                            </div>
+                            {% endif %}
+                        </div>
                     </div>
 
                     <div class="col-2 d-grid">

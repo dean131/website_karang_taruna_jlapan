@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from base.models import Jumbotron, Kependudukan
+from base.models import Jumbotron, KarangTaruna, Kependudukan
 
 def login(request):
     return render(request, 'myadmin/login.html')
@@ -12,12 +12,9 @@ def jumbotron_beranda(request):
         deskripsi = request.POST.get('deskripsi')
         foto = request.FILES.get('foto')
 
-        if judul:
-            jumbotron.judul = judul
-        if deskripsi:
-            jumbotron.deskripsi = deskripsi
-        if foto:
-            jumbotron.foto = foto
+        if judul: jumbotron.judul = judul
+        if deskripsi: jumbotron.deskripsi = deskripsi
+        if foto: jumbotron.foto = foto
         jumbotron.save()
 
     jumbotron, created = Jumbotron.objects.get_or_create(nama='jumbotron_beranda')
@@ -38,12 +35,9 @@ def jumbotron_profile(request):
         deskripsi = request.POST.get('deskripsi')
         foto = request.FILES.get('foto')
 
-        if judul:
-            jumbotron.judul = judul
-        if deskripsi:
-            jumbotron.deskripsi = deskripsi
-        if foto:
-            jumbotron.foto = foto
+        if judul: jumbotron.judul = judul
+        if deskripsi: jumbotron.deskripsi = deskripsi
+        if foto: jumbotron.foto = foto
         jumbotron.save()
 
     jumbotron, created = Jumbotron.objects.get_or_create(nama='jumbotron_profile')
@@ -66,16 +60,11 @@ def kependudukan(request):
         jumlah_penduduk_pria = request.POST.get('jumlah_penduduk_pria')
         jumlah_penduduk_perempuan = request.POST.get('jumlah_penduduk_perempuan')
 
-        if deskripsi:
-            kependudukan.deskripsi = deskripsi
-        if foto:
-            kependudukan.foto = foto
-        if jumlah_penduduk_total:
-            kependudukan.jumlah_penduduk_total = jumlah_penduduk_total
-        if jumlah_penduduk_pria:
-            kependudukan.jumlah_penduduk_pria = jumlah_penduduk_pria
-        if jumlah_penduduk_perempuan:
-            kependudukan.jumlah_penduduk_perempuan = jumlah_penduduk_perempuan
+        if deskripsi: kependudukan.deskripsi = deskripsi
+        if foto: kependudukan.foto = foto
+        if jumlah_penduduk_total: kependudukan.jumlah_penduduk_total = jumlah_penduduk_total
+        if jumlah_penduduk_pria: kependudukan.jumlah_penduduk_pria = jumlah_penduduk_pria
+        if jumlah_penduduk_perempuan: kependudukan.jumlah_penduduk_perempuan = jumlah_penduduk_perempuan
         kependudukan.save()
 
     kependudukan = Kependudukan.objects.first()
@@ -91,3 +80,24 @@ def kependudukan(request):
         'kependudukan': kependudukan,
     }
     return render(request, 'myadmin/kependudukan.html', context)
+
+def karangtaruna(request):
+    if request.method == 'POST':
+        karangtaruna = KarangTaruna.objects.first()
+        nama = request.POST.get('nama')
+        deskripsi = request.POST.get('deskripsi')
+        lokasi = request.POST.get('lokasi')
+        foto = request.FILES.get('foto')
+
+        if nama: karangtaruna.nama = nama
+        if deskripsi: karangtaruna.deskripsi = deskripsi
+        if lokasi: karangtaruna.lokasi = lokasi
+        if foto: karangtaruna.foto = foto
+        karangtaruna.save()
+
+    karangtaruna = KarangTaruna.objects.first()
+
+    context = {
+        'karangtaruna': karangtaruna,
+    }
+    return render(request, 'myadmin/karangtaruna.html', context)

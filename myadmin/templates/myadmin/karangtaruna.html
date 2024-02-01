@@ -4,11 +4,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Kependudukan</h1>
+        <h1>Karang Taruna</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Kependudukan</a></li>
-                <li class="breadcrumb-item active">Kependudukan</li>
+                <li class="breadcrumb-item"><a href="#">Karang Taruna</a></li>
+                <li class="breadcrumb-item active">Karang Taruna</li>
             </ol>
         </nav>
     </div>
@@ -17,27 +17,33 @@
     <section class="section dashboard">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Kependudukan</h5>
+                <h5 class="card-title">Karang Taruna</h5>
 
                 <!-- Vertical Form -->
                 <form class="row g-3" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
 
                     <div class="col-12">
-                        <label for="inputPassword" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" style="height: 200px" name="deskripsi"
-                            required>{{ kependudukan.deskripsi }}</textarea>
+                        <label for="inputNanme4" class="form-label">nama</label>
+                        <input type="text" class="form-control" id="inputNanme4" value="{{ karangtaruna.nama }}"
+                            name="nama" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="inputPassword" class="form-label">Nama</label>
+                        <textarea class="form-control" style="height: 200px" name="nama"
+                            required>{{ karangtaruna.nama }}</textarea>
                     </div>
 
                     <div class="col-12">
                         <div class="row">
                             <div class="col-lg-8">
-                                <label for="formFile" class="form-label">Gambar</label>
-                                <input class="form-control" type="file" id="formFile" name="foto">
+                                <label for="formFile" class="form-label">Logo</label>
+                                <input class="form-control" type="file" id="formFile" name="logo">
                             </div>
-                            {% if kependudukan.foto %}
+                            {% if karangtaruna.logo %}
                             <div class="col-lg-4 d-flex p-3 justify-content-center">
-                                <img src="{{ kependudukan.foto.url }}" class="w-75 align-self-center shadow rounded">
+                                <img src="{{ karangtaruna.logo.url }}" class="w-75 align-self-center shadow rounded">
                             </div>
                             {% endif %}
                         </div>

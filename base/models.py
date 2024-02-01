@@ -77,21 +77,21 @@ class User(AbstractBaseUser):
 class KarangTaruna(models.Model):
     # Halaman utama
     nama = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='karangtaruna', blank=True)
+    logo = models.ImageField(upload_to='karangtaruna', blank=True, null=True)
     # Address
-    lokasi = models.TextField(null=True)
-    alamat = models.CharField(max_length=100)
+    lokasi = models.TextField(null=True, blank=True)
+    alamat = models.CharField(max_length=100, null=True, blank=True)
     # Contact
-    telepon = models.CharField(max_length=20)
-    email = models.EmailField(max_length=100)
-    facebook = models.CharField(max_length=100)
-    instagram = models.CharField(max_length=100)
+    telepon = models.CharField(max_length=20, null=True, blank=True)
+    email = models.EmailField(max_length=100, null=True, blank=True)
+    facebook = models.CharField(max_length=100, null=True, blank=True)
+    instagram = models.CharField(max_length=100, null=True, blank=True)
     # Profile Page
-    visi = models.TextField()
-    misi = models.TextField()
-    regulasi = models.TextField()
-    program_kerja = models.TextField()
-    motto = models.TextField()
+    visi = models.TextField(null=True, blank=True)
+    misi = models.TextField(null=True, blank=True)
+    regulasi = models.TextField(null=True, blank=True)
+    program_kerja = models.TextField(null=True, blank=True)
+    motto = models.TextField(null=True, blank=True)
 
 
 class Pengumuman(models.Model):
