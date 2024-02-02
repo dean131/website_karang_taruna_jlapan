@@ -38,8 +38,10 @@
         <!-- Content -->
         <div class="col col-xl-9">
             <div class="card">
+                {% if pengumuman.foto %}
                 <img class="img-fluid rounded-top" style="object-fit: cover; max-height: 400px;"
                     src="{{ pengumuman.foto.url }}" alt="gambar">
+                {% endif %}
                 <div class="card-body">
                     <h4>{{ pengumuman.judul }}</h4>
                     <p>{{ pengumuman.deskripsi }}</p>
@@ -80,11 +82,13 @@
                     <a href="{% url 'detail_pengumuman' pengumuman.id %}"
                         class="link-underline link-underline-opacity-0">
                         <div class="card shadow">
-                            <div class="row">
+                            <div class="row ">
+                                {% if pengumuman.foto %}
                                 <div class="col-4">
                                     <img src="{{ pengumuman.foto.url }}" class="w-100 h-100 rounded-start"
                                         style="object-fit: cover; max-height: 100px;" alt="...">
                                 </div>
+                                {% endif %}
                                 <div class="col-8 py-2">
                                     <p class="card-side">{{ pengumuman.judul }}</p>
                                     <p>

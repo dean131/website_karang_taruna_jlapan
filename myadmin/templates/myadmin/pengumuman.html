@@ -1,0 +1,108 @@
+{% extends 'myadmin/base.html' %}
+
+{% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Pengumuman</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+                <li class="breadcrumb-item active">Kependudukan</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Form Pengumuman</h5>
+
+                <!-- Vertically centered Modal -->
+                <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal"
+                    data-bs-target="#verticalycentered">
+                    Tambah Pengumuman
+                </button>
+                <div class="modal fade" id="verticalycentered" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Tambah Pengumuman</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Vertical Form -->
+                                <form class="row g-3" id="formTambahPengumuman" method="post"
+                                    enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    <div class="col-12">
+                                        <label for="inputJudul" class="form-label">Judul</label>
+                                        <input type="text" class="form-control" id="inputJudul" name="judul" required>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="inputDeskripsi" class="form-label">Deskripsi</label>
+                                        <textarea class="form-control" id="inputDeskripsi" style="height: 200px"
+                                            name="deskripsi" required></textarea>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="inputLokasi" class="form-label">Lokasi</label>
+                                        <textarea class="form-control" style="height: 200px" name="lokasi"></textarea>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="formFile" class="form-label">Gambar</label>
+                                        <input class="form-control" type="file" id="formFile" name="foto" required>
+                                    </div>
+                                </form>
+                                <!-- Vertical Form -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" form="formTambahPengumuman"
+                                    class="btn btn-primary">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Vertically centered Modal-->
+
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                    <thead>
+                        <tr>
+                            <th>Judul</th>
+                            <th data-type="date" data-format="YYYY/DD/MM">Tanggal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pengumuman in pengumumans %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'detail_pengumuman' pengumuman.id %}">
+                                    {{ pengumuman.judul }}
+                                </a>
+                            </td>
+                            <td>{{ pengumuman.tanggal }}</td>
+                            <td>
+                                <a href="#" class="btn btn-danger">Hapus</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-from base.models import Jumbotron, KarangTaruna, Kependudukan
+from base.models import Jumbotron, KarangTaruna, Kependudukan, Pengumuman
 
 def login(request):
     return render(request, 'myadmin/login.html')
@@ -113,3 +112,26 @@ def karangtaruna(request):
         'karangtaruna': karangtaruna,
     }
     return render(request, 'myadmin/karangtaruna.html', context)
+
+def admin_pengumuman(request):
+    if request.method == 'POST':
+        judul = request.POST.get('judul')
+        deskripsi = request.POST.get('deskripsi')
+        foto = request.FILES.get('foto')
+        lokasi = request.POST.get('lokasi')
+
+        Pengumuman.objects.create(
+            judul=judul,
+            deskripsi=deskripsi,
+            foto=foto,
+            lokasi=lokasi,
+        )
+
+    pengumumans = Pengumuman.objects.all()
+
+    context = {
+        'pengumumans': pengumumans,
+    }
+    return render(request, 'myadmin/pengumuman.html', context)
+
+

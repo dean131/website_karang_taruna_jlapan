@@ -106,10 +106,12 @@
                         class="link-underline link-underline-opacity-0">
                         <div class="card shadow">
                             <div class="row">
+                                {% if pengumuman.foto %}
                                 <div class="col-4">
                                     <img src="{{ pengumuman.foto.url }}" class="w-100 h-100 rounded-start"
                                         style="object-fit: cover; max-height: 100px;" alt="...">
                                 </div>
+                                {% endif %}
                                 <div class="col-8 ps-1 pt-2 pe-3">
                                     <p class="card-side">{{ pengumuman.judul }}</p>
                                     <p>
