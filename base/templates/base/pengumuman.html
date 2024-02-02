@@ -60,7 +60,7 @@
             <div class="row g-3">
                 {% for pengumuman in pengumumans %}
                 <div class="col-md-6 col-lg-4">
-                    <div class="card shadow">
+                    <div class="card shadow-sm">
                         <img src="{{ pengumuman.foto.url }}" class="card-img-top"
                             style="height: 200px; object-fit: cover;" alt="...">
                         <div class="card-image-overlay">
@@ -104,7 +104,7 @@
                 <div class="col-12">
                     <a href="{% url 'detail_pengumuman' pengumuman.id %}"
                         class="link-underline link-underline-opacity-0">
-                        <div class="card shadow">
+                        <div class="card shadow-sm">
                             <div class="row">
                                 {% if pengumuman.foto %}
                                 <div class="col-4">

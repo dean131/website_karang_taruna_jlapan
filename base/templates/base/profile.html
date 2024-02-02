@@ -76,13 +76,13 @@
 <div class="container-fluid">
     <div class="row g-3 py-5">
         <div class="col-lg-6">
-            <div class="card p-3 shadow">
+            <div class="card p-3 shadow-sm">
                 <h2 class="text-center my-3">Regulasi</h2>
                 <p class="text-visi-misi">{{ karangtaruna.regulasi }}</p>
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="card p-3 shadow">
+            <div class="card p-3 shadow-sm">
                 <h2 class="text-center my-3">Program Kerja</h2>
                 <p class="text-visi-misi">{{ karangtaruna.program_kerja }}</p>
             </div>
@@ -160,7 +160,7 @@
         <div class="mb-3 p-3">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="card p-3 shadow mb-3">
+                    <div class="card p-3 shadow-sm mb-3">
                         <h2 class="red">{{ divisi.nama }}</h2>
                         <p class="text-visi-misi">{{ divisi.deskripsi }}</p>
                     </div>
@@ -169,7 +169,7 @@
                     <div class="row">
                         {% for anggota in divisi.anggota_set.all %}
                         <div class="col-sm-5 col-md-4 col-lg-3 mb-2">
-                            <div class="card shadow">
+                            <div class="card shadow-sm">
                                 <img src="{{ anggota.foto.url }}" class="card-img-top"
                                     style="object-fit: cover; height: 200px;" alt="...">
                                 <div class="card-body">

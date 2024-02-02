@@ -91,6 +91,11 @@ def karangtaruna(request):
         email = request.POST.get('email')
         facebook = request.POST.get('facebook')
         instagram = request.POST.get('instagram')
+        visi = request.POST.get('visi')
+        misi = request.POST.get('misi')
+        motto = request.POST.get('motto')
+        regulasi = request.POST.get('regulasi')
+        program_kerja = request.POST.get('program_kerja')
 
         if nama: karangtaruna.nama = nama
         if lokasi: karangtaruna.lokasi = lokasi
@@ -100,6 +105,11 @@ def karangtaruna(request):
         if email: karangtaruna.email = email
         if facebook: karangtaruna.facebook = facebook
         if instagram: karangtaruna.instagram = instagram
+        if visi: karangtaruna.visi = visi
+        if misi: karangtaruna.misi = misi
+        if motto: karangtaruna.motto = motto
+        if regulasi: karangtaruna.regulasi = regulasi
+        if program_kerja: karangtaruna.program_kerja = program_kerja
         karangtaruna.save()
 
     karangtaruna = KarangTaruna.objects.first()

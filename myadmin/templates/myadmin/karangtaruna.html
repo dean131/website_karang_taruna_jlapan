@@ -23,48 +23,56 @@
                 <form class="row g-3" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
 
+                    <!-- Nama Karang Taruna -->
                     <div class="col-12">
                         <label for="inputNama" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="inputNama" value="{{ karangtaruna.nama }}"
                             name="nama" required>
                     </div>
 
+                    <!-- Alamat -->
                     <div class="col-12">
                         <label for="inputAlamat" class="form-label">Alamat</label>
                         <textarea class="form-control" id="inputAlamat" style="height: 200px" name="alamat"
                             required>{{ karangtaruna.alamat }}</textarea>
                     </div>
 
+                    <!-- Lokasi -->
                     <div class="col-12">
                         <label for="inputLokasi" class="form-label">Lokasi</label>
                         <textarea class="form-control" style="height: 200px" name="lokasi"
                             required>{{ karangtaruna.lokasi }}</textarea>
                     </div>
 
+                    <!-- Telepon -->
                     <div class="col-12">
                         <label for="inputTelepon" class="form-label">Telepon</label>
                         <input type="number" class="form-control" id="inputTelepon" value="{{ karangtaruna.telepon }}"
                             name="telepon" required>
                     </div>
 
+                    <!-- Email -->
                     <div class="col-12">
                         <label for="inputEmail" class="form-label">Email</label>
                         <input type="email" class="form-control" id="inputEmail" value="{{ karangtaruna.email }}"
                             name="email" required>
                     </div>
 
+                    <!-- Facebook -->
                     <div class="col-12">
                         <label for="inputFacebook" class="form-label">Facebook</label>
                         <input type="text" class="form-control" id="inputFacebook" value="{{ karangtaruna.facebook }}"
                             name="facebook" required>
                     </div>
 
+                    <!-- Instagram -->
                     <div class="col-12">
                         <label for="inputInstagram" class="form-label">Instagram</label>
                         <input type="text" class="form-control" id="inputInstagram" value="{{ karangtaruna.instagram }}"
                             name="instagram" required>
                     </div>
 
+                    <!-- Logo -->
                     <div class="col-12">
                         <div class="row">
                             <div class="col-lg-8">
@@ -77,6 +85,41 @@
                             </div>
                             {% endif %}
                         </div>
+                    </div>
+
+                    <!-- Visi -->
+                    <div class="col-12">
+                        <label for="inputVisi" class="form-label">Visi</label>
+                        <textarea class="form-control" style="height: 200px" name="visi"
+                            required>{{ karangtaruna.visi }}</textarea>
+                    </div>
+
+                    <!-- Misi -->
+                    <div class="col-12">
+                        <label for="inputMisi" class="form-label">Misi</label>
+                        <textarea class="form-control" style="height: 200px" name="misi"
+                            required>{{ karangtaruna.misi }}</textarea>
+                    </div>
+
+                    <!-- Motto -->
+                    <div class="col-12">
+                        <label for="inputMotto" class="form-label">Motto</label>
+                        <textarea class="form-control" style="height: 200px" name="motto"
+                            required>{{ karangtaruna.motto }}</textarea>
+                    </div>
+
+                    <!-- Regulasi -->
+                    <div class="col-12">
+                        <label for="inputRegulasi" class="form-label">Regulasi</label>
+                        <textarea class="form-control" style="height: 200px" name="regulasi"
+                            required>{{ karangtaruna.regulasi }}</textarea>
+                    </div>
+
+                    <!-- Program Kerja -->
+                    <div class="col-12">
+                        <label for="inputProgramKerja" class="form-label">Program Kerja</label>
+                        <textarea class="form-control" style="height: 200px" name="program_kerja"
+                            required>{{ karangtaruna.program_kerja }}</textarea>
                     </div>
 
                     <div class="col-2 d-grid">
