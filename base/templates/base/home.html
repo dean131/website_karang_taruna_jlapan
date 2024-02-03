@@ -46,7 +46,7 @@
                         <h5 class="card-title">{{ pengumuman.judul }}</h5>
                         <p class="card-text card-text-carousell">{{ pengumuman.deskripsi }}</p>
                         <a href="{% url 'detail_pengumuman' pengumuman.id %}"
-                            class="btn btn-outline-dark">Selengkapnya</a>
+                            class="btn btn-outline-danger">Selengkapnya</a>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
     <!-- End Carousell -->
 
     <div class="mt-5 text-center">
-        <a href="{% url 'pengumuman' %}" class="btn btn-outline-light">Agenda lainnya</a>
+        <a href="{% url 'pengumuman' %}" class="btn btn-danger">Agenda lainnya</a>
     </div>
 
 </div>

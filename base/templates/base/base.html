@@ -31,12 +31,12 @@
         }
 
         .bg-blue-fg-white {
-            background-color: #222B5A;
+            background-color: #f6cb45;
             color: white;
         }
 
         .red {
-            color: #eb4a2d;
+            color: #d10101;
         }
 
         h1 {
@@ -73,6 +73,11 @@
             color: #414141;
             font-weight: bold;
             font-size: 46px;
+        }
+
+        .btn-danger:hover {
+            background: white;
+            color: #d10101;
         }
 
         #myCarousel {
@@ -125,7 +130,7 @@
         .carousel-control-prev {
             width: 6vh;
             height: 6vh;
-            background-color: #EB4A2D;
+            background-color: #d10101;
             border-radius: 50%;
             top: 50%;
             transform: translate(-50%);
@@ -135,7 +140,7 @@
         .carousel-control-next {
             width: 6vh;
             height: 6vh;
-            background-color: #EB4A2D;
+            background-color: #d10101;
             border-radius: 50%;
             top: 50%;
             transform: translate(-50%);
@@ -159,10 +164,10 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" style="font-weight: 500;" href="/">
+            <a class="navbar-brand d-flex align-items-center" style="font-weight: 500; vertical-align: bottom;"
+                href="/">
                 {% if karangtaruna.logo %}
-                <img src="{{ karangtaruna.logo.url }}" alt="Logo" width="60" height="60"
-                    class="d-inline-block align-text-top me-3">
+                <img src="{{ karangtaruna.logo.url }}" alt="Logo" width="60" class="d-inline-block align-text-top me-3">
                 {% endif %}
                 {{ karangtaruna.nama }}
             </a>
@@ -203,7 +208,7 @@
                         <h2>Alamat</h2>
                         <div class="row mt-3">
                             <i class="fa-solid fa-location-dot col-auto"></i>
-                            <p class="col-auto">{{ karangtaruna.alamat }}</p>
+                            <p class="col">{{ karangtaruna.alamat }}</p>
                         </div>
                     </div>
                     <h2>Sosial Media</h2>

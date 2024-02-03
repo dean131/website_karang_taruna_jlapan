@@ -9,7 +9,7 @@
 <style>
     .image-overlay {
         color: white;
-        background-color: #eb4a2d;
+        background-color: #d10101;
         font-size: 14px;
         padding: 0.2rem 0.5rem;
     }
@@ -44,13 +44,13 @@
                 <form action="{% url 'pengumuman' %}" method="get">
                     <div class="row">
                         <div class="col-auto">
-                            <input class="form-control" type="date" name="dari">
+                            <input class="form-control border-danger" type="date" name="dari" required>
                         </div>
                         <div class="col-auto">
-                            <input class="form-control" type="date" name="sampai">
+                            <input class="form-control border-danger" type="date" name="sampai" required>
                         </div>
                         <div class="col-auto">
-                            <button class="btn btn-dark" type="submit">Cari</button>
+                            <button class="btn btn-danger" type="submit">Cari</button>
                         </div>
                     </div>
                 </form>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-tile-pengumuman">{{ pengumuman.judul }}</p>
-                            <a href="{% url 'detail_pengumuman' pengumuman.id %}" class="btn btn-outline-dark btn-sm">
+                            <a href="{% url 'detail_pengumuman' pengumuman.id %}" class="btn btn-outline-danger btn-sm">
                                 Selengkapnya
                             </a>
                         </div>
@@ -88,10 +88,11 @@
             <form action="{% url 'pengumuman' %}" method="get">
                 <div class="row">
                     <div class="col">
-                        <input class="form-control" type="search" name="cari" placeholder="Cari">
+                        <input class="form-control border-danger text-danger" type="search" name="cari"
+                            placeholder="Cari">
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-dark" type="submit">Cari</button>
+                        <button class="btn btn-danger" type="submit">Cari</button>
                     </div>
                 </div>
             </form>
