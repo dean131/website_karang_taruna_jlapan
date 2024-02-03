@@ -162,14 +162,15 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" style="font-weight: 500; vertical-align: bottom;"
-                href="/">
+            <a class="navbar-brand d-flex align-items-center" style="font-weight: 500;" href="/">
                 {% if karangtaruna.logo %}
                 <img src="{{ karangtaruna.logo.url }}" alt="Logo" width="60" class="d-inline-block align-text-top me-3">
                 {% endif %}
-                {{ karangtaruna.nama }}
+                <p class="d-none d-sm-block align-self-center">
+                    {{ karangtaruna.nama }}
+                </p>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -233,7 +234,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 d-flex justify-content-center mt-3">
-                    <iframe src="{{ karangtaruna.lokasi }}" class="w-100 h-100 align-self-center rounded"
+                    <iframe src="{{ karangtaruna.lokasi }}" class="w-100 h-100 align-self-center rounded shadow-sm"
                         style="min-height: 300px;"></iframe>
                 </div>
             </div>

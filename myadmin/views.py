@@ -1,9 +1,26 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 from base.models import Anggota, Divisi, Jumbotron, KarangTaruna, Kependudukan, Pengumuman, Pimpinan
+from django.contrib.auth import authenticate, login, logout
 
-def login(request):
+
+def user_login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, email=email, password=password)
+        print(user)
+        if user:
+            login(request, user)
+            return redirect('jumbotron_beranda')
     return render(request, 'myadmin/login.html')
 
+@login_required(login_url='user_login')
+def user_logout(request):
+    logout(request)
+    return redirect('user_login')
+
+@login_required(login_url='user_login')
 def jumbotron_beranda(request):
     if request.method == 'POST':
         jumbotron = Jumbotron.objects.filter(nama='jumbotron_beranda').first()
@@ -27,6 +44,7 @@ def jumbotron_beranda(request):
     }
     return render(request, 'myadmin/jumbotron_beranda.html', context)
 
+@login_required(login_url='user_login')
 def jumbotron_profile(request):
     if request.method == 'POST':
         jumbotron = Jumbotron.objects.filter(nama='jumbotron_profile').first()
@@ -50,6 +68,7 @@ def jumbotron_profile(request):
     }
     return render(request, 'myadmin/jumbotron_profile.html', context)
 
+@login_required(login_url='user_login')
 def kependudukan(request):
     if request.method == 'POST':
         kependudukan = Kependudukan.objects.first()
@@ -80,6 +99,7 @@ def kependudukan(request):
     }
     return render(request, 'myadmin/kependudukan.html', context)
 
+@login_required(login_url='user_login')
 def karangtaruna(request):
     if request.method == 'POST':
         karangtaruna = KarangTaruna.objects.first()
@@ -123,6 +143,7 @@ def karangtaruna(request):
     }
     return render(request, 'myadmin/karangtaruna.html', context)
 
+@login_required(login_url='user_login')
 def admin_pengumuman(request):
     if request.method == 'POST':
         judul = request.POST.get('judul')
@@ -144,11 +165,13 @@ def admin_pengumuman(request):
     }
     return render(request, 'myadmin/pengumuman.html', context)
 
+@login_required(login_url='user_login')
 def delete_pengumuman(request, id):
     pengumuman = Pengumuman.objects.get(id=id)
     pengumuman.delete()
     return redirect('admin_pengumuman')
 
+@login_required(login_url='user_login')
 def pimpinan(request):
     if request.method == 'POST':
         nama = request.POST.get('nama')
@@ -168,11 +191,13 @@ def pimpinan(request):
     }
     return render(request, 'myadmin/pimpinan.html', context)
 
+@login_required(login_url='user_login')
 def delete_pimpinan(request, id):
     pimpinan = Pimpinan.objects.get(id=id)
     pimpinan.delete()
     return redirect('pimpinan')
 
+@login_required(login_url='user_login')
 def anggota(request):
     if request.method == 'POST':
         nama = request.POST.get('nama')
@@ -195,11 +220,13 @@ def anggota(request):
     }
     return render(request, 'myadmin/anggota.html', context)
 
+@login_required(login_url='user_login')
 def delete_anggota(request, id):
     anggota = Anggota.objects.get(id=id)
     anggota.delete()
     return redirect('anggota')
 
+@login_required(login_url='user_login')
 def divisi(request):
     if request.method == 'POST':
         nama = request.POST.get('nama')
@@ -216,6 +243,7 @@ def divisi(request):
     }
     return render(request, 'myadmin/divisi.html', context)
 
+@login_required(login_url='user_login')
 def delete_divisi(request, id):
     divisi = Divisi.objects.get(id=id)
     divisi.delete()

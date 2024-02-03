@@ -39,7 +39,7 @@
         <div class="carousel-inner w-100">
             {% for pengumuman in pengumumans %}
             <div {% if forloop.first %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
-                <div class="card col-md-3 me-3">
+                <div class="card col-md-3 me-3 shadow-sm">
                     <img src="{{ pengumuman.foto.url }}" class="card-img-top" alt="..."
                         style="height: 200px; object-fit: cover;">
                     <div class="card-body">
