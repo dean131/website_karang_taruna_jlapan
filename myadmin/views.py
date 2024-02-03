@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from base.models import Jumbotron, KarangTaruna, Kependudukan, Pengumuman
+from django.shortcuts import redirect, render
+from base.models import Anggota, Divisi, Jumbotron, KarangTaruna, Kependudukan, Pengumuman, Pimpinan
 
 def login(request):
     return render(request, 'myadmin/login.html')
@@ -144,4 +144,79 @@ def admin_pengumuman(request):
     }
     return render(request, 'myadmin/pengumuman.html', context)
 
+def delete_pengumuman(request, id):
+    pengumuman = Pengumuman.objects.get(id=id)
+    pengumuman.delete()
+    return redirect('admin_pengumuman')
 
+def pimpinan(request):
+    if request.method == 'POST':
+        nama = request.POST.get('nama')
+        foto = request.FILES.get('foto')
+        telepon = request.POST.get('telepon')
+        jabatan = request.POST.get('jabatan')
+
+        Pimpinan.objects.create(
+            nama=nama,
+            foto=foto,
+            telepon=telepon,
+            jabatan=jabatan,
+        )
+    pimpinans = Pimpinan.objects.all()
+    context = {
+        'pimpinans': pimpinans,
+    }
+    return render(request, 'myadmin/pimpinan.html', context)
+
+def delete_pimpinan(request, id):
+    pimpinan = Pimpinan.objects.get(id=id)
+    pimpinan.delete()
+    return redirect('pimpinan')
+
+def anggota(request):
+    if request.method == 'POST':
+        nama = request.POST.get('nama')
+        foto = request.FILES.get('foto')
+        telepon = request.POST.get('telepon')
+        jabatan = request.POST.get('jabatan')
+        divisi = request.POST.get('divisi')
+
+        Anggota.objects.create(
+            nama=nama,
+            foto=foto,
+            alamat='',
+            telepon=telepon,
+            jabatan=jabatan,
+            divisi=Divisi.objects.get(id=divisi),
+        )
+    divisis = Divisi.objects.all()
+    context = {
+        'divisis': divisis,
+    }
+    return render(request, 'myadmin/anggota.html', context)
+
+def delete_anggota(request, id):
+    anggota = Anggota.objects.get(id=id)
+    anggota.delete()
+    return redirect('anggota')
+
+def divisi(request):
+    if request.method == 'POST':
+        nama = request.POST.get('nama')
+        deskripsi = request.POST.get('deskripsi')
+
+        Divisi.objects.create(
+            nama=nama,
+            deskripsi=deskripsi,
+        )
+
+    divisis = Divisi.objects.all()
+    context = {
+        'divisis': divisis,
+    }
+    return render(request, 'myadmin/divisi.html', context)
+
+def delete_divisi(request, id):
+    divisi = Divisi.objects.get(id=id)
+    divisi.delete()
+    return redirect('divisi')

@@ -1,0 +1,102 @@
+{% extends 'myadmin/base.html' %}
+
+{% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Divisi</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+                <li class="breadcrumb-item active">Organisasi</li>
+                <li class="breadcrumb-item active">Divisi</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <h5 class="card-title">List Divisi</h5>
+                    </div>
+                    <div class="col mb-3 d-flex p-3">
+                        <button type="button" class="btn btn-primary ms-auto" data-bs-toggle="modal"
+                            data-bs-target="#modalTambahDivisi">
+                            Tambah Divisi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bordered Table -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Jargon</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for divisi in divisis %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ divisi.nama }}</td>
+                            <td>{{ divisi.deskripsi }}</td>
+                            <td>
+                                <a href="{% url 'delete_divisi' divisi.id %}" class="btn btn-danger ms-auto">
+                                    Hapus
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- End Bordered Table -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Vertically centered Modal Tambah Divisi -->
+    <div class="modal fade" id="modalTambahDivisi" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Divisi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Vertical Form -->
+                    <form class="row g-3" id="formTambahDivisi" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="col-12">
+                            <label for="inputNama" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="inputNama" name="nama" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="inputDeskripsi" class="form-label">Jargon</label>
+                            <textarea class="form-control" id="inputDeskripsi" style="height: 200px" name="deskripsi"
+                                required></textarea>
+                        </div>
+                    </form>
+                    <!-- Vertical Form -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" form="formTambahDivisi" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Vertically centered Modal Tambah Divisi-->
+
+</main>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

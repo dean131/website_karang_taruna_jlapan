@@ -1,0 +1,133 @@
+{% extends 'myadmin/base.html' %}
+
+{% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Pimpinan</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+                <li class="breadcrumb-item active">Organisasi</li>
+                <li class="breadcrumb-item active">Pimpinan</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <h5 class="card-title">List Pimpinan</h5>
+                    </div>
+                    <div class="col mb-3 d-flex p-3">
+                        <button type="button" class="btn btn-primary ms-auto" data-bs-toggle="modal"
+                            data-bs-target="#modalTambahPimpinan">
+                            Tambah Pimpinan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bordered Table -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Jabatan</th>
+                            <th scope="col">Telepon</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pimpinan in pimpinans %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ pimpinan.nama }}</td>
+                            <td>{{ pimpinan.jabatan }}</td>
+                            <td>{{ pimpinan.telepon }}</td>
+                            <td>
+                                <a href="{% url 'delete_pimpinan' pimpinan.id %}" class="btn btn-danger ms-auto">
+                                    Hapus
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- End Bordered Table -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Vertically centered Modal Tambah Pimpinan -->
+    <div class="modal fade" id="modalTambahPimpinan" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Pimpinan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Vertical Form -->
+                    <form class="row g-3" id="formTambahPimpinan" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="col-12">
+                            <label for="inputNama" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="inputNama" name="nama" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="inputJabatan" class="form-label">Jabatan</label>
+                            <input type="text" class="form-control" id="inputJabatan" name="jabatan" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="inputTelepon" class="form-label">Telepon</label>
+                            <input type="text" class="form-control" id="inputTelepon" name="telepon" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="formFile" class="form-label">Foto</label>
+                            <input class="form-control" type="file" id="formFile" name="foto" required>
+                        </div>
+                    </form>
+                    <!-- Vertical Form -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" form="formTambahPimpinan" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Vertically centered Modal Tambah Pimpinan-->
+
+    <!-- Vertically centered Modal Hapus Pimpinan -->
+    <!-- <div class="modal fade" id="modalHapusPimpinan" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hapus Pimpinan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Lanjutkan Menghapus?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <a type="button" href="" class="btn btn-primary">Hapus</a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- End Vertically centered Modal Hapus Pimpinan-->
+
+</main>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
