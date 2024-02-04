@@ -118,6 +118,8 @@ class Divisi(models.Model):
         return self.nama
 
 class Anggota(models.Model):
+    class Meta:
+        ordering = ['-jabatan']
     nama = models.CharField(max_length=100)
     foto = models.ImageField(upload_to='anggota')
     alamat = models.CharField(max_length=100)
@@ -127,6 +129,8 @@ class Anggota(models.Model):
 
 
 class Pimpinan(models.Model):
+    class Meta:
+        ordering = ['jabatan']
     nama = models.CharField(max_length=100)
     foto = models.ImageField(upload_to='pimpinan')
     telepon = models.CharField(max_length=20)
