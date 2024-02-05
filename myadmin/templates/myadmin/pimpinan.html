@@ -49,7 +49,7 @@
                             <td>{{ pimpinan.jabatan }}</td>
                             <td>{{ pimpinan.telepon }}</td>
                             <td>
-                                <a href="{% url 'delete_pimpinan' pimpinan.id %}" class="btn btn-danger ms-auto">
+                                <a data-idPimpinan="{{ pimpinan.id }}" class="btn btn-danger btn-delete ms-auto">
                                     Hapus
                                 </a>
                             </td>
@@ -107,7 +107,7 @@
     </div><!-- End Vertically centered Modal Tambah Pimpinan-->
 
     <!-- Vertically centered Modal Hapus Pimpinan -->
-    <!-- <div class="modal fade" id="modalHapusPimpinan" tabindex="-1">
+    <div class="modal fade" id="modalHapusPimpinan" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -123,7 +123,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- End Vertically centered Modal Hapus Pimpinan-->
 
 </main>
@@ -133,5 +133,17 @@
 <script>
     var jumbotronBerandaNav = document.getElementById("pimpinanNav");
     jumbotronBerandaNav.classList.add("active");
+
+    var btnDeletes = document.querySelectorAll('.btn-delete');
+    btnDeletes.forEach(btn => {
+        btn.addEventListener('click', function () {
+            var idPimpinan = this.getAttribute('data-idPimpinan');
+            var modalHapusPimpinan = document.getElementById('modalHapusPimpinan');
+            modalHapusPimpinan.querySelector('a').href = `{{ url 'delete_pimpinan' ${idPimpinan} }}`
+            var modal = new bootstrap.Modal(modalHapusPimpinan);
+            modal.show();
+        });
+    });
+
 </script>
 {% endblock %}
