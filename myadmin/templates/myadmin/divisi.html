@@ -48,9 +48,18 @@
                             <td>{{ divisi.nama }}</td>
                             <td>{{ divisi.deskripsi }}</td>
                             <td>
-                                <a href="{% url 'delete_divisi' divisi.id %}" class="btn btn-danger ms-auto">
-                                    Hapus
-                                </a>
+                                <div class="row">
+                                    <div class="col">
+                                        <a data-idDivisi="{{ divisi.id }}" class="btn btn-danger btn-delete">
+                                            Hapus
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a data-idDivisi="{{ divisi.id }}" class="btn btn-warning btn-edit">
+                                            Edit
+                                        </a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         {% endfor %}
@@ -96,6 +105,25 @@
         </div>
     </div><!-- End Vertically centered Modal Tambah Divisi-->
 
+    <!-- Vertically centered Modal Hapus Divisi -->
+    <div class="modal fade" id="modalHapusPimpinan" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hapus Divisi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Lanjutkan Menghapus?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <a type="button" href="" class="btn btn-primary">Hapus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Vertically centered Modal Hapus Divisi-->
 </main>
 {% endblock %}
 
@@ -103,5 +131,40 @@
 <script>
     var jumbotronBerandaNav = document.getElementById("divisiNav");
     jumbotronBerandaNav.classList.add("active");
+
+    // Edit Divisi
+    var btnEdits = document.querySelectorAll('.btn-edit');
+    btnEdits.forEach(btn => {
+        btn.addEventListener('click', function () {
+            var idDivisi = this.getAttribute('data-idDivisi');
+            var modalEditDivisi = document.getElementById('modalTambahDivisi');
+            modalEditDivisi.querySelector('form').action = "{% url 'edit_divisi' 0 %}".replace('0', idDivisi);
+
+            // get data divisi from row
+            var row = this.parentElement.parentElement.parentElement.parentElement;
+            var nama = row.children[1].innerHTML;
+            var deskripsi = row.children[2].innerHTML;
+
+            // set data divisi to form
+            modalEditDivisi.querySelector('#inputNama').value = nama;
+            modalEditDivisi.querySelector('#inputDeskripsi').value = deskripsi;
+
+            // Show Modal
+            var modal = new bootstrap.Modal(modalEditDivisi);
+            modal.show();
+        });
+    });
+
+    // Delete Divisi
+    var btnDeletes = document.querySelectorAll('.btn-delete');
+    btnDeletes.forEach(btn => {
+        btn.addEventListener('click', function () {
+            var idDivisi = this.getAttribute('data-idDivisi');
+            var modalHapusDivisi = document.getElementById('modalHapusPimpinan');
+            modalHapusDivisi.querySelector('a').href = "{% url 'delete_divisi' 0 %}".replace('0', idDivisi);
+            var modal = new bootstrap.Modal(modalHapusDivisi);
+            modal.show();
+        });
+    });
 </script>
 {% endblock %}

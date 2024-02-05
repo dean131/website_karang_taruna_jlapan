@@ -51,7 +51,7 @@
                             <td>{{ anggota.jabatan }}</td>
                             <td>{{ anggota.telepon }}</td>
                             <td>
-                                <a href="{% url 'delete_anggota' anggota.id %}" class="btn btn-danger ms-auto">
+                                <a data-idAnggota="{{ anggota.id }}" class="btn btn-danger btn-delete ms-auto">
                                     Hapus
                                 </a>
                             </td>
@@ -60,71 +60,92 @@
                     </tbody>
                 </table>
                 <!-- End Bordered Table -->
-
             </div>
         </div>
-
-        <!-- Vertically centered Modal Tambah Anggota -->
-        <div class="modal fade" id="modalTambahAngota" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Tambah Anggota</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Vertical Form -->
-                        <form class="row g-3" id="formTambahAnggota" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-
-                            <div class="col-12">
-                                <label for="inputNama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="inputNama" name="nama" required>
-                            </div>
-
-                            <div class="col-12" hidden>
-                                <label class="form-label">Divisi</label>
-                                <select class="form-select" aria-label="Default select example" name="divisi">
-                                    {% for divisi in divisis %}
-                                    <option value="{{ divisi.id }}">{{ divisi.nama }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="inputJabatan" class="form-label">Jabatan</label>
-                                <input type="text" class="form-control" id="inputJabatan" name="jabatan" required>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="inputTelepon" class="form-label">Telepon</label>
-                                <input type="text" class="form-control" id="inputTelepon" name="telepon" required>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="formFile" class="form-label">Foto</label>
-                                <input class="form-control" type="file" id="formFile" name="foto" required>
-                            </div>
-                        </form>
-                        <!-- Vertical Form -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" form="formTambahAnggota" class="btn btn-primary">Simpan</button>
-                    </div>
-                </div>
-            </div>
-        </div><!-- End Vertically centered Modal Tambah Anggota-->
     </section>
     {% endfor %}
 
+    <!-- Vertically centered Modal Tambah Anggota -->
+    <div class="modal fade" id="modalTambahAngota" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Anggota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Vertical Form -->
+                    <form class="row g-3" id="formTambahAnggota" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="col-12">
+                            <label for="inputNama" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="inputNama" name="nama" required>
+                        </div>
+
+                        <div class="col-12" hidden>
+                            <label class="form-label">Divisi</label>
+                            <select class="form-select" aria-label="Default select example" name="divisi">
+                                {% for divisi in divisis %}
+                                <option value="{{ divisi.id }}">{{ divisi.nama }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="inputJabatan" class="form-label">Jabatan</label>
+                            <input type="text" class="form-control" id="inputJabatan" name="jabatan" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="inputTelepon" class="form-label">Telepon</label>
+                            <input type="text" class="form-control" id="inputTelepon" name="telepon" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="formFile" class="form-label">Foto</label>
+                            <input class="form-control" type="file" id="formFile" name="foto" required>
+                        </div>
+                    </form>
+                    <!-- Vertical Form -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" form="formTambahAnggota" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Vertically centered Modal Tambah Anggota-->
+
+    <!-- Vertically centered Modal Hapus Divisi -->
+    <div class="modal fade" id="modalHapusPimpinan" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hapus Divisi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Lanjutkan Menghapus?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <a type="button" href="" class="btn btn-primary">Hapus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Vertically centered Modal Hapus Divisi-->
 </main>
 {% endblock %}
 
 {% block js %}
 <script>
+    var jumbotronBerandaNav = document.getElementById("anggotaNav");
+    jumbotronBerandaNav.classList.add("active");
+
+    // Tambah Anggota
     var btnTambahAnggota = document.querySelectorAll('.tambah-anggota');
-    // btnTambahAnggota clicked
     btnTambahAnggota.forEach(btn => {
         btn.addEventListener('click', function () {
             var modalTambahAnggota = document.getElementById('modalTambahAngota');
@@ -139,7 +160,16 @@
         });
     });
 
-    var jumbotronBerandaNav = document.getElementById("anggotaNav");
-    jumbotronBerandaNav.classList.add("active");
+    // Hapus Anggota
+    var btnDeletes = document.querySelectorAll('.btn-delete');
+    btnDeletes.forEach(btn => {
+        btn.addEventListener('click', function () {
+            var idAnggota = this.getAttribute('data-idAnggota');
+            var modalHapusPimpinan = document.getElementById('modalHapusPimpinan');
+            modalHapusPimpinan.querySelector('a').href = "{% url 'delete_anggota' 0 %}".replace('0', idAnggota);
+            var modal = new bootstrap.Modal(modalHapusPimpinan);
+            modal.show();
+        });
+    });
 </script>
 {% endblock %}

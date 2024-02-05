@@ -16,11 +16,13 @@ urlpatterns = [
     path('delete_anggota/<str:id>/', views.delete_anggota, name='delete_anggota'),
 
     path('divisi/', views.divisi, name='divisi'),
+    path('edit_divisi/<str:id>/', views.edit_divisi, name='edit_divisi'),
     path('delete_divisi/<str:id>/', views.delete_divisi, name='delete_divisi'),
 
     path('admin_pengumuman/', views.admin_pengumuman, name='admin_pengumuman'),
     path('delete_pengumuman/<str:id>/', views.delete_pengumuman, name='delete_pengumuman'),
 
     path('pimpinan/', views.pimpinan, name='pimpinan'),
+    path('edit_pimpinan/<str:id>/', views.edit_pimpinan, name='edit_pimpinan'),
     path('delete_pimpinan/<str:id>/', views.delete_pimpinan, name='delete_pimpinan'),
 ]

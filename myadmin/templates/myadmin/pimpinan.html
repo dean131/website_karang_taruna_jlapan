@@ -49,9 +49,18 @@
                             <td>{{ pimpinan.jabatan }}</td>
                             <td>{{ pimpinan.telepon }}</td>
                             <td>
-                                <a data-idPimpinan="{{ pimpinan.id }}" class="btn btn-danger btn-delete ms-auto">
-                                    Hapus
-                                </a>
+                                <div class="row">
+                                    <div class="col">
+                                        <a data-idPimpinan="{{ pimpinan.id }}" class="btn btn-danger btn-delete">
+                                            Hapus
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a data-idPimpinan="{{ pimpinan.id }}" class="btn btn-warning btn-edit">
+                                            Edit
+                                        </a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         {% endfor %}
@@ -134,6 +143,34 @@
     // Add Active Class Navbar
     var jumbotronBerandaNav = document.getElementById("pimpinanNav");
     jumbotronBerandaNav.classList.add("active");
+
+    // Edit Pimpinan
+    var btnEdits = document.querySelectorAll('.btn-edit');
+    btnEdits.forEach(btn => {
+        btn.addEventListener('click', function () {
+            var idPimpinan = this.getAttribute('data-idPimpinan');
+            var modalEditPimpinan = document.getElementById('modalTambahPimpinan');
+            modalEditPimpinan.querySelector('form').action = "{% url 'edit_pimpinan' 0 %}".replace('0', idPimpinan);
+
+            // get data pimpinan from row
+            var row = this.parentElement.parentElement.parentElement.parentElement;
+            var nama = row.querySelector('td:nth-child(2)').innerHTML;
+            var jabatan = row.querySelector('td:nth-child(3)').innerHTML;
+            var telepon = row.querySelector('td:nth-child(4)').innerHTML;
+
+            // set data to form
+            modalEditPimpinan.querySelector('#inputNama').value = nama;
+            modalEditPimpinan.querySelector('#inputJabatan').value = jabatan;
+            modalEditPimpinan.querySelector('#inputTelepon').value = telepon;
+
+            // remove required attribute from file input
+            modalEditPimpinan.querySelector('#formFile').removeAttribute('required');
+
+            // show modal
+            var modal = new bootstrap.Modal(modalEditPimpinan);
+            modal.show();
+        });
+    });
 
     // Hapus Pimpinan
     var btnDeletes = document.querySelectorAll('.btn-delete');

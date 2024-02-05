@@ -192,6 +192,27 @@ def pimpinan(request):
     return render(request, 'myadmin/pimpinan.html', context)
 
 @login_required(login_url='user_login')
+def edit_pimpinan(request, id):
+    pimpinan = Pimpinan.objects.get(id=id)
+    if request.method == 'POST':
+        nama = request.POST.get('nama')
+        foto = request.FILES.get('foto')
+        telepon = request.POST.get('telepon')
+        jabatan = request.POST.get('jabatan')
+
+        if nama: pimpinan.nama = nama
+        if foto: pimpinan.foto = foto
+        if telepon: pimpinan.telepon = telepon
+        if jabatan: pimpinan.jabatan = jabatan
+        pimpinan.save()
+        return redirect('pimpinan')
+
+    context = {
+        'pimpinan': pimpinan,
+    }
+    return render(request, 'myadmin/edit_pimpinan.html', context)
+
+@login_required(login_url='user_login')
 def delete_pimpinan(request, id):
     pimpinan = Pimpinan.objects.get(id=id)
     pimpinan.delete()
@@ -242,6 +263,23 @@ def divisi(request):
         'divisis': divisis,
     }
     return render(request, 'myadmin/divisi.html', context)
+
+@login_required(login_url='user_login')
+def edit_divisi(request, id):
+    divisi = Divisi.objects.get(id=id)
+    if request.method == 'POST':
+        nama = request.POST.get('nama')
+        deskripsi = request.POST.get('deskripsi')
+
+        if nama: divisi.nama = nama
+        if deskripsi: divisi.deskripsi = deskripsi
+        divisi.save()
+        return redirect('divisi')
+
+    context = {
+        'divisi': divisi,
+    }
+    return render(request, 'myadmin/edit_divisi.html', context)
 
 @login_required(login_url='user_login')
 def delete_divisi(request, id):
