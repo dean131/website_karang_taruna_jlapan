@@ -131,15 +131,17 @@
 
 {% block js %}
 <script>
+    // Add Active Class Navbar
     var jumbotronBerandaNav = document.getElementById("pimpinanNav");
     jumbotronBerandaNav.classList.add("active");
 
+    // Hapus Pimpinan
     var btnDeletes = document.querySelectorAll('.btn-delete');
     btnDeletes.forEach(btn => {
         btn.addEventListener('click', function () {
             var idPimpinan = this.getAttribute('data-idPimpinan');
             var modalHapusPimpinan = document.getElementById('modalHapusPimpinan');
-            modalHapusPimpinan.querySelector('a').href = `{{ url 'delete_pimpinan' ${idPimpinan} }}`
+            modalHapusPimpinan.querySelector('a').href = "{% url 'delete_pimpinan' 0 %}".replace('0', idPimpinan);
             var modal = new bootstrap.Modal(modalHapusPimpinan);
             modal.show();
         });
