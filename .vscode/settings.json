@@ -1,4 +1,5 @@
 {
     "editor.fontSize": 18,
     "editor.fontFamily": "SF Mono Bold",
+    "workbench.colorTheme": "Atom One Dark"
 }

@@ -218,14 +218,19 @@
                             <i class="fa-brands fa-facebook-f col-auto"></i>
                             <p class="facebook col-auto">{{ karangtaruna.facebook }}</p>
                         </div>
-                        <div class="row">
+                        <div class="row mb-3">
                             <i class="fa-brands fa-instagram col-auto"></i>
-                            <p class="col-auto">{{ karangtaruna.instagram }}</p>
+                            <a class="col-auto link-underline link-underline-opacity-0 link-light"
+                                href="https://www.instagram.com/{{ karangtaruna.instagram }}/">
+                                {{ karangtaruna.instagram }}
+                            </a>
                         </div>
-                        <div class="row mb-2">
+                        <div class="row mb-3">
                             <i class="fa-brands fa-whatsapp col-auto"></i>
                             <a class="col-auto link-underline link-underline-opacity-0 link-light"
-                                href="https://wa.me/{{ karangtaruna.telepon }}">{{ karangtaruna.telepon }}</a>
+                                href="https://wa.me/{{ karangtaruna.telepon }}">
+                                {{ karangtaruna.telepon }}
+                            </a>
                         </div>
                         <div class="row">
                             <i class="fa-regular fa-envelope col-auto"></i>
