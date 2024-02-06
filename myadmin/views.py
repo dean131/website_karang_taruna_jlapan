@@ -26,8 +26,14 @@ def user_logout(request):
 def change_password(request):
     if request.method == 'POST':
         user = request.user
-        password = request.POST.get('password')
         old_password = request.POST.get('old_password')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if password != confirm_password:
+            messages.error(request, 'Password baru tidak sama', extra_tags='danger')
+            return redirect('change_password')
+
         if not user.check_password(old_password):
             messages.error(request, 'Password lama salah', extra_tags='danger')
             return redirect('change_password')
