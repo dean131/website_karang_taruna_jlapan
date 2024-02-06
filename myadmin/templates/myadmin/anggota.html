@@ -51,9 +51,18 @@
                             <td>{{ anggota.jabatan }}</td>
                             <td>{{ anggota.telepon }}</td>
                             <td>
-                                <a data-idAnggota="{{ anggota.id }}" class="btn btn-danger btn-delete ms-auto">
-                                    Hapus
-                                </a>
+                                <div class="row">
+                                    <div class="col">
+                                        <a data-idAnggota="{{ anggota.id }}" class="btn btn-danger btn-delete">
+                                            Hapus
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a data-idAnggota="{{ anggota.id }}" class="btn btn-warning btn-edit">
+                                            Edit
+                                        </a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         {% endfor %}
@@ -156,6 +165,34 @@
             modalTambahAnggota.querySelector('.form-select').value = idDivisi;
 
             var modal = new bootstrap.Modal(modalTambahAnggota);
+            modal.show();
+        });
+    });
+
+    // Edit Anggota
+    var btnEdits = document.querySelectorAll('.btn-edit');
+    btnEdits.forEach(btn => {
+        btn.addEventListener('click', function () {
+            var idAnggota = this.getAttribute('data-idAnggota');
+            var modalEditAnggota = document.getElementById('modalTambahAngota');
+            modalEditAnggota.querySelector('form').action = "{% url 'edit_anggota' 0 %}".replace('0', idAnggota);
+
+            // get data anggota from row
+            var row = this.parentElement.parentElement.parentElement.parentElement;
+            var nama = row.children[1].innerHTML;
+            var jabatan = row.children[2].innerHTML;
+            var telepon = row.children[3].innerHTML;
+
+            // set data anggota to form
+            modalEditAnggota.querySelector('#inputNama').value = nama;
+            modalEditAnggota.querySelector('#inputJabatan').value = jabatan;
+            modalEditAnggota.querySelector('#inputTelepon').value = telepon;
+
+            // remove required attribute from file input
+            modalEditAnggota.querySelector('#formFile').removeAttribute('required');
+
+            // Show Modal
+            var modal = new bootstrap.Modal(modalEditAnggota);
             modal.show();
         });
     });

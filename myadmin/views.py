@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from base.models import Anggota, Divisi, Jumbotron, KarangTaruna, Kependudukan, Pengumuman, Pimpinan
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 
 def user_login(request):
@@ -9,16 +10,32 @@ def user_login(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         user = authenticate(request, email=email, password=password)
-        print(user)
         if user:
             login(request, user)
             return redirect('jumbotron_beranda')
+        else:
+            messages.error(request, 'Email atau Password salah', extra_tags='danger')
     return render(request, 'myadmin/login.html')
 
 @login_required(login_url='user_login')
 def user_logout(request):
     logout(request)
     return redirect('user_login')
+
+@login_required(login_url='user_login')
+def change_password(request):
+    if request.method == 'POST':
+        user = request.user
+        password = request.POST.get('password')
+        old_password = request.POST.get('old_password')
+        if not user.check_password(old_password):
+            messages.error(request, 'Password lama salah', extra_tags='danger')
+            return redirect('change_password')
+        user.set_password(password)
+        user.save()
+        messages.success(request, 'Password berhasil diganti', extra_tags='success')
+        return redirect('user_login')
+    return render(request, 'myadmin/change_password.html')
 
 @login_required(login_url='user_login')
 def jumbotron_beranda(request):
@@ -240,6 +257,29 @@ def anggota(request):
         'divisis': divisis,
     }
     return render(request, 'myadmin/anggota.html', context)
+
+@login_required(login_url='user_login')
+def edit_anggota(request, id):
+    anggota = Anggota.objects.get(id=id)
+    divisis = Divisi.objects.all()
+    if request.method == 'POST':
+        nama = request.POST.get('nama')
+        foto = request.FILES.get('foto')
+        telepon = request.POST.get('telepon')
+        jabatan = request.POST.get('jabatan')
+
+        if nama: anggota.nama = nama
+        if foto: anggota.foto = foto
+        if telepon: anggota.telepon = telepon
+        if jabatan: anggota.jabatan = jabatan
+        anggota.save()
+        return redirect('anggota')
+
+    context = {
+        'anggota': anggota,
+        'divisis': divisis,
+    }
+    return render(request, 'myadmin/edit_anggota.html', context)
 
 @login_required(login_url='user_login')
 def delete_anggota(request, id):

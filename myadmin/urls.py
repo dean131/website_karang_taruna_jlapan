@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     path('user_login/', views.user_login, name='user_login'),
     path('user_logout/', views.user_logout, name='user_logout'),
+    path('change_password/', views.change_password, name='change_password'),
 
     path('', views.jumbotron_beranda, name='jumbotron_beranda'),
     path('jumbotron_profile/', views.jumbotron_profile, name='jumbotron_profile'),
@@ -13,6 +14,7 @@ urlpatterns = [
     path('karangtaruna/', views.karangtaruna, name='karangtaruna'),
 
     path('anggota/', views.anggota, name='anggota'),
+    path('edit_anggota/<str:id>/', views.edit_anggota, name='edit_anggota'),
     path('delete_anggota/<str:id>/', views.delete_anggota, name='delete_anggota'),
 
     path('divisi/', views.divisi, name='divisi'),

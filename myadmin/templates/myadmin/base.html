@@ -70,13 +70,20 @@
               <h6>Admin</h6>
 
             <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'change_password' %}">
+                <i class="bi bi-key"></i>
+                <span>Ganti Kata Sandi</span>
+              </a>
+            </li>
+
+            <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{% url 'user_logout' %}">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <span>Logout</span>
               </a>
             </li>
 
